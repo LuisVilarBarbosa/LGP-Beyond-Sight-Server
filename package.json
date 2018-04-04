@@ -1,0 +1,20 @@
+{
+  "name": "Beyond-Sight-Server",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -L app.js"
+  },
+  "author": "Luís Barbosa",
+  "description": "Webpage of Luís Barbosa",
+  "repository": "github.com/LuisVilarBarbosa/LGP-Beyond-Sight-Server",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "hbs": "^4.0.1",
+    "node-where": "^1.1.0",
+    "nodemon": "^1.14.11",
+    "path": "^0.12.7",
+    "request-ip": "^2.0.2"
+  }
+}
