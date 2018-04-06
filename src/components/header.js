@@ -9,12 +9,12 @@ export default class Header extends Component {
     return (
       <header>
     
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li><Link to="/" exact>Home</Link></li>
-              <li><Link to="/pages/about" exact>About</Link></li>
+      <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div className="container">
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul className="nav navbar-nav">
+              <li><Link to="/" exact="true">Home</Link></li>
+              <li><Link to="/pages/about" exact="true">About</Link></li>
             </ul>
           </div>
         </div>
