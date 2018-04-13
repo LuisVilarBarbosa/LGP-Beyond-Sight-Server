@@ -59,3 +59,4 @@ typings/
 
 src/pdf-sample.pdf
 src/pdf-test.pdf
+.idea/
