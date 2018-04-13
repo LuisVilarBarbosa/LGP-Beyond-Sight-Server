@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link, Switch, Route} from 'react-router-dom';
 import About from "../pages/about";
 import Home from "../pages/home";
-
+import Pdfs from "../pages/pdfs";
 export default class Header extends Component {
   
   render() {
@@ -23,6 +23,7 @@ export default class Header extends Component {
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route path='/pages/about' component={About}/>
+        <Route path='/pages/pdfs' component={Pdfs}/>
       </Switch>
       
       </header>
