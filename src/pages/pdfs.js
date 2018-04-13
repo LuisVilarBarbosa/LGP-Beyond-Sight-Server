@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Page } from 'react-pdf';
-import { Document } from 'react-pdf/dist/entry.webpack';
+import { Page, Document } from 'react-pdf';
+import DPFfile from '../pdf-sample.pdf';
 
 export default class pdfs extends Component {
 
     openNewWindow() {
-        window.open('http://che.org.il/wp-content/uploads/2016/12/pdf-sample.pdf', 'sharer', 'toolbar=0,status=0,width=548,height=325');
+        window.open('http://che.org.il/wp-content/uploads/2016/12/pdf-sample.pdf', 'PDF_View', 'toolbar=0,status=0,width=548,height=325');
     }
 
     state = {
@@ -24,11 +24,12 @@ export default class pdfs extends Component {
             <h1>pdf page</h1>
 
             {/*ONE WAY*/}
-            <p onClick={this.openNewWindow}>Click here</p>
+            <p onClick={this.openNewWindow}>Click here to open a new window</p>
 
             {/*OTHER WAY -- NOT WORKING */}
             <Document
-            file="../pdf-sample.pdf"
+            file={DPFfile}
+            onLoadSuccess={this.onDocumentLoad}
             >
             <Page pageNumber={pageNumber} />
             </Document>

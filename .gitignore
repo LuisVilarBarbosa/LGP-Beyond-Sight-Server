@@ -57,6 +57,4 @@ typings/
 # dotenv environment variables file
 .env
 
-src/pdf-sample.pdf
-src/pdf-test.pdf
 .idea/
