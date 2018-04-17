@@ -14,23 +14,23 @@ export default class Header extends Component {
                 {/*<div id="pricing" className="container-fluid"/>*/}
                 {/*<div id="contact" className="container-fluid"/>*/}
 
-                <nav className="navbar navbar-default navbar-fixed-top">
-                    <div className="container">
-                        <div className="navbar-header">
-                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                            </button>
-                            <a className="navbar-brand" href="#">Logo</a>
-                        </div>
-                        <div className="collapse navbar-collapse" id="myNavbar">
-                            <ul className="nav navbar-nav navbar-right">
-                                <li><a href="#about">ABOUT</a></li>
-                                <li><a href="#contact">CONTACT</a></li>
-                                <li><a href="#download">DOWNLOAD</a></li>
-                            </ul>
-                        </div>
+                <nav className="navbar navbar-expand-lg navbar-light bg-faded">
+                    <a className="navbar-brand" href="#">Logo</a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <a className="nav-link" href="#about">ABOUT</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#contact">CONTACT</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#download">DOWNLOAD</a>
+                            </li>
+                        </ul>
                     </div>
                 </nav>
             </header>
