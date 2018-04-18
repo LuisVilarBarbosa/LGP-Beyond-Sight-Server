@@ -6,18 +6,18 @@ export default class Header extends Component {
     render() {
         return (
             <header>
-                {/*<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60"/>*/}
-
-                {/*<div id="about" className="container-fluid"/>*/}
-                {/*<div id="services" className="container-fluid"/>*/}
-                {/*<div id="portfolio" className="container-fluid"/>*/}
-                {/*<div id="pricing" className="container-fluid"/>*/}
-                {/*<div id="contact" className="container-fluid"/>*/}
-
                 <nav className="navbar navbar-expand-lg navbar-light bg-faded">
-                    <a className="navbar-brand" href="#">Logo</a>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                    <navd>
+                        <img src="../resources/images/logo_white.png" style={{width: 100, marginTop: -7}}/>
+                        BEYOND SIGHT
+                    </navd>
+                    <button className="navbar-toggler"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup"
+                            aria-controls="navbarNavAltMarkup"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"><span className="navbar-toggler-icon"/>
                     </button>
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                         <ul className="navbar-nav">

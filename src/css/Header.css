@@ -1,5 +1,5 @@
 .logo {
-    font-size: 200px;
+    font-size: 400px;
 }
 
 .navbar {
@@ -18,8 +18,7 @@
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
-    color: #f4511e !important;
-    background-color: #fff !important;
+    background-color: #364765 !important;
 }
 
 .navbar-default .navbar-toggle {
