@@ -1,4 +1,4 @@
 .jumbotron {
-    background-color: #A8BBD1;
+    background: url('../resources/images/bg.jpg') no-repeat center top #FFF;
     color: #ffffff;
 }
