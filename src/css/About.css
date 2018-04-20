@@ -1,4 +1,18 @@
-.jumbotron {
-    background: url('../resources/images/bg.jpg') no-repeat center top #FFF;
+#about {
+    background: url(../resources/images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
     color: #ffffff;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
 }
+
+#aboutSection{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+}
+

@@ -4,21 +4,31 @@
 
 .navbar {
     margin-bottom: 0;
-    background-color: #506A87;
+    background-color: rgba(16, 44, 55, 0.73);
     z-index: 9999;
     border: 0;
-    font-size: 12px !important;
-    line-height: 1.42857143 !important;
-    letter-spacing: 4px;
+    font-size: 14px !important;
     border-radius: 0;
+    padding-right: 10%;
+    padding-left: 10%;
 }
 
-.navbar li a, .navbar .navbar-brand {
+.navbar .navbar-brand img{
+    width: 110px;
+    margin-top: -7px;
+    padding-right: 15px ;
+}
+
+.navbar li a{
     color: #fff !important;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
-    background-color: #364765 !important;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #6ccbe1;
 }
 
 .navbar-default .navbar-toggle {
