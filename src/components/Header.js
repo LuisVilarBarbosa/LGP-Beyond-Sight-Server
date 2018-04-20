@@ -7,10 +7,9 @@ export default class Header extends Component {
         return (
             <header>
                 <nav className="navbar navbar-expand-lg navbar-light bg-faded">
-                    <navd>
-                        <img src="../resources/images/logo_white.png" style={{width: 100, marginTop: -7}}/>
-                        BEYOND SIGHT
-                    </navd>
+                    <a className="navbar-brand" href="#">
+                        <img src={require('../resources/images/logo_white.png')}/>
+                    </a>
                     <button className="navbar-toggler"
                             type="button"
                             data-toggle="collapse"
