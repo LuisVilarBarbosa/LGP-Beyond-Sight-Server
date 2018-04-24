@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
-import Footer from "./components/Footer";
 import Content from "./components/Content";
+import Footer from "./components/Footer";
 import Pdf from "./pages/pdf";
 import {Switch, Route} from 'react-router-dom';
+import './css/Common.css';
 
 export default class App extends Component {
 
@@ -13,7 +14,6 @@ export default class App extends Component {
                 <Switch>
                 <Route path='/pages/pdf' component={Pdf}/>
                 </Switch>
-
                 <Content/>
                 <Footer/>
             </div>

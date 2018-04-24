@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
+import React, {Component, ReactDOM} from 'react';
 import About from "./Content/About";
 import Download from "./Content/Download";
 import Contact from "./Content/Contact";
+import '../css/Content.css';
 
 export default class Content extends Component {
 
     render() {
         return (
-            <div style={{width:'100%', height:'100%'}}>
+            <div>
                 <About/>
                 <Download/>
                 <Contact/>

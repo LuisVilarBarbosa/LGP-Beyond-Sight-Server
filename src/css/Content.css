@@ -1,0 +1,208 @@
+.navbar {
+    margin-bottom: 0;
+    background-color: rgba(16, 44, 55, 0.4);
+    z-index: 9999;
+    border: 0;
+    font-size: 14px !important;
+    border-radius: 0;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.navbar .navbar-brand img{
+    width: 110px;
+    margin-top: -7px;
+    padding-right: 15px ;
+}
+
+.navbar li a{
+    color: #fff !important;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #6ccbe1;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+#about {
+    background: url(../resources/images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+@media screen and (min-width: 992px) {
+    #about, #download, #contact {
+        height: 100vh;
+    }
+    #aboutSection{
+        position: absolute;
+        top: 55%; left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    #contactSection{
+        padding-left:10%;
+        padding-right:10%;
+    }
+
+    #contactSection .btn{
+        float: right;
+    }
+    #contactSection .form{
+        border-left-color:#6ccbe1;
+        border-left-style: solid;
+        padding-left: 15px;
+    }
+}
+@media screen and (max-width: 992px) {
+    #aboutSection, #downloadSection, #contactSection{
+        padding-top:20%;
+        padding-bottom:20%;
+    }
+    #downloadSection{
+        padding-left:3%;
+        padding-right:3%;
+    }
+}
+
+h1{
+    color: #6ccbe1;
+    font-size: 40px;
+    padding-bottom:5%;
+}
+
+@media screen and (min-width: 992px)
+{
+    #aboutSection p{
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        margin-left:20%;
+        margin-right:20%;
+    }
+
+    #download, #contact{
+        position: relative;
+    }
+
+    #downloadSection, #contactSection{
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #downloadSection{
+        width:80%;
+    }
+
+    #downloadSection .img-container{
+        width:100%;
+        border-left-color:#6ccbe1;
+        border-left-style: solid;
+        border-right-color:#6ccbe1;
+        border-right-style: solid;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px){
+    #downloadSection{
+        width:100%;
+    }
+    #downloadSection .img-container{
+        width:100%;
+        border-left-color:#6ccbe1;
+        border-left-style: solid;
+        border-right-color:#6ccbe1;
+        border-right-style: solid;
+    }
+}
+
+#aboutSection p{
+    text-align: justify;
+    color: white;
+    font-size: 16px;
+    border-left-color:#6ccbe1;
+    border-left-style: solid;
+    padding-left: 15px;
+}
+
+#download{
+    background-color: #fcfcfc;
+    width: 100%;
+}
+
+#downloadSection img{
+    width: 300px;
+}
+
+#downloadSection .btn{
+    margin:0;
+    padding:0;
+    margin-top:5%;
+    background-color: #fcfcfc;
+    width:250px;
+    height:60px;
+    background-image: url(../resources/images/buttons/btn3.png);
+    background-size: 250px 60px;
+}
+
+#downloadSection .btn:hover{
+    background-image: url(../resources/images/buttons/btn3_pressed.png);
+    background-size: 250px 60px;
+}
+
+#contact{
+    background-color: #184250;
+    color: white;
+}
+
+#contactSection img{
+    width:250px;
+    padding-top:5px;
+}
+
+#contactSection input, #contactSection textarea{
+    border:none;
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+#contactSection .btn{
+    margin-top:20px;
+    background: linear-gradient(#6ccbe1, #6dbdd6);
+    color:white;
+    border-radius: 5px;
+    text-transform: uppercase;
+    width:100px;
+    border:none;
+}
+
+@media screen and (max-width: 767px) {
+    #contactSection img{
+        padding-top:0;
+        width:100px;
+        padding-bottom:50px;
+    }
+}
+
+@media screen and (max-width: 320px){
+    #downloadSection img{
+        width: 100%;
+    }
+}
+
+.btn {
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+}
