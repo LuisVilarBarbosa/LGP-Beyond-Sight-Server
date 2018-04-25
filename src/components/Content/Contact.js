@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
-import '../../css/Contact.css';
+var Scroll = require('react-scroll');
+var Link = Scroll.Link;
+var DirectLink = Scroll.DirectLink;
+var Element = Scroll.Element;
+var Events = Scroll.Events;
+var scroll = Scroll.animateScroll;
+var scrollSpy = Scroll.scrollSpy;
 
 export default class Contact extends Component {
 
     render() {
         return (
-            <div id="contact">
-                <div id="contactSection" className="container">
+            <Element name="contact" id="contact">
+                <div id="contactWrapper">
+                    <div id="contactSection" className="container">
                     <h1 className="text-center">CONTACT</h1>
                     <div className="row">
                         <div className="col-md-5">
@@ -26,13 +33,14 @@ export default class Contact extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-sm-12 form-group">
-                                    <button className="btn btn-default" type="submit">Send</button>
+                                    <button className="btn"/>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
-            </div>
+            </Element>
         );
     }
 

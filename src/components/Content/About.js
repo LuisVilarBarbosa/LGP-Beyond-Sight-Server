@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
-/*https://www.npmjs.com/package/react-scroll*/
+var Scroll = require('react-scroll');
+var Link = Scroll.Link;
+var DirectLink = Scroll.DirectLink;
+var Element = Scroll.Element;
+var Events = Scroll.Events;
+var scroll = Scroll.animateScroll;
+var scrollSpy = Scroll.scrollSpy;
+
 export default class Contact extends Component {
 
     render() {
         return (
-            <div id="about">
-                <nav className="navbar navbar-expand-lg navbar-light bg-faded">
+            <Element name="about" id="about">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-faded">
                     <a className="navbar-brand" href="#">
                         <img src={require('../../resources/images/logo_white.png')}/>
                     </a>
@@ -20,13 +27,13 @@ export default class Contact extends Component {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link" href="#about">ABOUT</a>
+                                <Link activeClass="active" className="about" to="about" spy={true} smooth={true} duration={500} >ABOUT</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#contact">CONTACT</a>
+                                <Link activeClass="active" className="download" to="download" spy={true} smooth={true} duration={500} >DOWNLOAD</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#download">DOWNLOAD</a>
+                                <Link activeClass="active" className="contact" to="contact" spy={true} smooth={true} duration={500} >CONTACT</Link>
                             </li>
                         </ul>
                     </div>
@@ -40,7 +47,7 @@ export default class Contact extends Component {
                         non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                     </p>
                 </div>
-            </div>
+            </Element>
         );
     }
 
