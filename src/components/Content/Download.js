@@ -19,6 +19,7 @@ export default class Download extends Component {
                     </div>
                     <button className="btn">
                     </button>
+					<i class="fas fa-camera-retro"></i>
                 </div>
             </Element>
         );
