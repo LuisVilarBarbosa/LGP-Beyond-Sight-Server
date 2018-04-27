@@ -13,7 +13,7 @@ export default class pdfs extends Component {
         //then select the file we want
         function importAll(r) {
             let files = {};
-            r.keys().map((item, index) => { files[item.replace('./', '')] = r(item); });
+            r.keys().map((item, index) => { files[item.replace('./', '')] = r(item); return true});
             return files;
         }
 
