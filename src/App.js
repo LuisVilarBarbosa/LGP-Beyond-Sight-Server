@@ -13,9 +13,9 @@ export default class App extends Component {
         return (
             <div className="App">
                 <Switch>
-                <Route path='/pages/pdf' component={Pdf}/>
+                    <Route path='/pages/pdf/:file_name' component={Pdf}/>
+                    <Route path='/' component={Content}/>
                 </Switch>
-                <Content/>
                 <Footer/>
             </div>
         );
