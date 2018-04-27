@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 var Scroll = require('react-scroll');
-var Link = Scroll.Link;
-var DirectLink = Scroll.DirectLink;
 var Element = Scroll.Element;
-var Events = Scroll.Events;
-var scroll = Scroll.animateScroll;
-var scrollSpy = Scroll.scrollSpy;
 
 export default class Download extends Component {
 
@@ -15,15 +10,13 @@ export default class Download extends Component {
                 <div id="downloadSection" className="text-center">
                     <h1>DOWNLOAD</h1>
                     <div className="img-container">
-                        <img src={require('../../resources/images/comp.png')}/>
+                        <img src={require('../../resources/images/comp.png')} alt="Download Beyond Sight"/>
                     </div>
                     <button className="btn">
                     </button>
-					<i class="fas fa-camera-retro"></i>
                 </div>
             </Element>
         );
     }
 
 }
-/*    <img src={require('../../resources/images/buttons/btn3.png')}/>*/

@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 var Scroll = require('react-scroll');
 var Link = Scroll.Link;
-var DirectLink = Scroll.DirectLink;
 var Element = Scroll.Element;
-var Events = Scroll.Events;
-var scroll = Scroll.animateScroll;
-var scrollSpy = Scroll.scrollSpy;
 
 export default class Contact extends Component {
 
@@ -13,8 +9,8 @@ export default class Contact extends Component {
         return (
             <Element name="about" id="about">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-faded">
-                    <a className="navbar-brand" href="#">
-                        <img src={require('../../resources/images/logo_white.png')}/>
+                    <a className="navbar-brand">
+                        <img src={require('../../resources/images/logo_white.png')} alt="Beyond Sight Logo"/>
                     </a>
                     <button className="navbar-toggler"
                             type="button"
