@@ -5,12 +5,15 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.5",
     "@fortawesome/react-fontawesome": "0.0.18",
+    "bufferutil": "3.0.4",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-fontawesome": "^1.6.1",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
-    "react-scroll-nav": "^1.1.5"
+    "react-scroll-nav": "^1.1.5",
+    "utf-8-validate": "4.0.1",
+    "ws": "5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
