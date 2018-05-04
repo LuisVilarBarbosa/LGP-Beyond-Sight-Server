@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 var Scroll = require('react-scroll');
 var Element = Scroll.Element;
 
+/*https://www.npmjs.com/package/express-mailer*/
+
 export default class Contact extends Component {
 
     constructor(props) {

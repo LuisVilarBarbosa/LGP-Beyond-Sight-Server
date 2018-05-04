@@ -6,7 +6,6 @@ import Pdf from "./pages/pdf";
 import {Switch, Route} from 'react-router-dom';
 import './css/Common.css';
 
-
 export default class App extends Component {
 
     render() {

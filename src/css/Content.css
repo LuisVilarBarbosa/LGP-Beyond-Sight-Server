@@ -70,7 +70,7 @@
     border:none;
 }
 
-#about {
+#about, #pdf {
     background: url(../resources/images/bg.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -78,8 +78,24 @@
     -o-background-size: cover;
 }
 @media screen and (min-width: 992px) {
-    #about, #download, #contact {
+    #about, #download, #contact, #pdf {
         height: 100vh;
+    }
+    #pdf .container{
+        position:absolute;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%); /* IE 9 */
+        -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
+    }
+
+    #pdf button{
+        position:absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%); /* IE 9 */
+        -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
     }
     #aboutSection{
         position: absolute;
@@ -268,3 +284,9 @@ h1{
     -o-transition: all 0.15s ease-in-out;
     transition: all 0.15s ease-in-out;
 }
+
+#pdf{
+    position:relative;
+}
+
+
