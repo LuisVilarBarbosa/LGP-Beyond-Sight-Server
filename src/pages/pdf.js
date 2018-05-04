@@ -86,7 +86,6 @@ export default class pdfs extends Component {
         numPagesN = await numPages.then(function(value){
             return value});
 
-        console.log("numPages " + numPagesN);
         this.setState({numPages: numPagesN});
     }
 
@@ -98,12 +97,9 @@ export default class pdfs extends Component {
     };
 
     nextPage(){
-        console.log(this.state.currentPage);
-        console.log(this.state.currentPage);
-        this.setState({currentPage: this.state.currentPage + 1});
         if(this.state.currentPage < this.state.numPages)
         {
-
+            this.setState({currentPage: this.state.currentPage + 1});
         }
 
     };
