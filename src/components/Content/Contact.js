@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 var Scroll = require('react-scroll');
-var Link = Scroll.Link;
-var DirectLink = Scroll.DirectLink;
 var Element = Scroll.Element;
-var Events = Scroll.Events;
-var scroll = Scroll.animateScroll;
-var scrollSpy = Scroll.scrollSpy;
 
 export default class Contact extends Component {
 
@@ -17,7 +12,7 @@ export default class Contact extends Component {
                     <h1 className="text-center">CONTACT</h1>
                     <div className="row">
                         <div className="col-md-5">
-                            <img src={require('../../resources/images/mail.png')}/>
+                            <img src={require('../../resources/images/mail.png')} alt="Contact us"/>
                         </div>
                         <div className="col-md-7">
                             <div className="form row">

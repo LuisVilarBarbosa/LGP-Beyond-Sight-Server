@@ -5,14 +5,15 @@ import Footer from "./components/Footer";
 import Pdf from "./pages/pdf";
 import {Switch, Route} from 'react-router-dom';
 import './css/Common.css';
-
+import express from 'express';
 const portsocket = 8000;
+
 
 const server = express()
   .listen(portsocket, () => console.log(`Listening on ${ portsocket }`));
 
-
-const wss = new SocketServer({ server });
+const Websocket= require('ws'); 
+const wss = new Websocket.Server({ server });
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
@@ -25,15 +26,16 @@ wss.on('connection', (ws) => {
 });
 
 
+
 export default class App extends Component {
 
     render() {
         return (
             <div className="App">
                 <Switch>
-                <Route path='/pages/pdf' component={Pdf}/>
+                    <Route path='/pages/pdf/:file_name' component={Pdf}/>
+                    <Route path='/' component={Content}/>
                 </Switch>
-                <Content/>
                 <Footer/>
             </div>
         );

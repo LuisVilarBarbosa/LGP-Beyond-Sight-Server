@@ -13,7 +13,8 @@
     "react-scripts": "1.1.4",
     "react-scroll-nav": "^1.1.5",
     "utf-8-validate": "4.0.1",
-    "ws": "5.1.1"
+    "ws": "5.1.1",
+    "react-scroll": "^1.7.9"
   },
   "scripts": {
     "start": "react-scripts start",
