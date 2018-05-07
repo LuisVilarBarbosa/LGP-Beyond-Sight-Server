@@ -27,6 +27,22 @@ const s = net.Server(function (socket) {
             });
             socket.write(fileURL);
         }
+        else if(command.startsWith("SLIDE_SHOW_BEGIN_EVENT")) {
+            const content = msg_sent.slice(128).toString('utf8');
+            // Inform REACT
+        }
+        else if(command.startsWith("SLIDE_SHOW_NEXT_SLIDE_EVENT")) {
+            const content = msg_sent.slice(128).toString('utf8');
+            // Inform REACT
+        }
+        else if(command.startsWith("SLIDE_SHOW_NEXT_BUILD_EVENT")) {
+            const content = msg_sent.slice(128).toString('utf8');
+            // Inform REACT
+        }
+        else if(command.startsWith("SLIDE_SHOW_END_EVENT")) {
+            const content = msg_sent.slice(128).toString('utf8');
+            // Inform REACT
+        }
         else
             console.log("Unexpected command received: " + command);
     });
