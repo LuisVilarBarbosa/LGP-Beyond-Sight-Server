@@ -10,7 +10,7 @@ var routes = (
     <DefaultRoute handler={require('./components/homePage')} />
     //<Route name="about" handler={require('./components/about/aboutPage')} />
     //<Route name="news" handler={require('./components/news/news')} />
-    <Route name="not-found" handler={require('./components/Content/NotFound')} />
+    <Route name="not-found" handler={require('./components/NotFound')} />
     //<Redirect from="about-us" to="about" />
     <Redirect from="*" to="not-foundt" />
   </Route>
