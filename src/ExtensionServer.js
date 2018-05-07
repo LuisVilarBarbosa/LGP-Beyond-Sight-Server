@@ -12,39 +12,41 @@ const s = net.Server(function (socket) {
     // 'data' is an event that means that a message was just sent by the 
     // client application
     socket.on('data', function (msg_sent) {
-        const command = msg_sent.slice(0, max_command_bytes - 1).toString('utf8');
-        if(command.startsWith("Info")) {
+        const last_command_byte = Math.min(msg_sent.indexOf("\0"), max_command_bytes - 1);
+        const command = msg_sent.slice(0, last_command_byte).toString('utf8');
+       
+        if("Info" == command) {
             const content = msg_sent.slice(max_command_bytes).toString('utf8');
             console.log(content);
         }
-        else if(command.startsWith("SENDING FILE")) {
-            const payload_pos = max_command_bytes + max_filename_bytes;
-            let filename = msg_sent.slice(max_command_bytes, payload_pos - 1).toString('utf8');
-            filename = filename.slice(0, filename.indexOf("\0"));
-            const content = msg_sent.slice(payload_pos);
+        else if("SENDING FILE" == command) {
+            const content_pos = max_command_bytes + max_filename_bytes;
+            const last_filename_byte = Math.min(msg_sent.indexOf("\0", max_command_bytes), content_pos - 1);
+            const filename = msg_sent.slice(max_command_bytes, last_filename_byte).toString('utf8');
+            const content = msg_sent.slice(content_pos);
             const storedFilename = files_dir + filename;
             const storedFileURL = files_url + filename;
             fs.writeFile(storedFilename, content, function(err) {
                 if(err) {
                     return console.error(err);
                 }
-                console.log("The file '" + filename + "' was saved!");
+                console.log("The file '" + storedFilename + "' was saved!");
             });
             socket.write(storedFileURL);
         }
-        else if(command.startsWith("SLIDE_SHOW_BEGIN_EVENT")) {
+        else if("SLIDE_SHOW_BEGIN_EVENT" == command) {
             const content = msg_sent.slice(max_command_bytes).toString('utf8');
             // Inform REACT
         }
-        else if(command.startsWith("SLIDE_SHOW_NEXT_SLIDE_EVENT")) {
+        else if("SLIDE_SHOW_NEXT_SLIDE_EVENT" == command) {
             const content = msg_sent.slice(max_command_bytes).toString('utf8');
             // Inform REACT
         }
-        else if(command.startsWith("SLIDE_SHOW_NEXT_BUILD_EVENT")) {
+        else if("SLIDE_SHOW_NEXT_BUILD_EVENT" == command) {
             const content = msg_sent.slice(max_command_bytes).toString('utf8');
             // Inform REACT
         }
-        else if(command.startsWith("SLIDE_SHOW_END_EVENT")) {
+        else if("SLIDE_SHOW_END_EVENT" == command) {
             const content = msg_sent.slice(max_command_bytes).toString('utf8');
             // Inform REACT
         }
