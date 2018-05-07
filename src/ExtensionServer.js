@@ -1,10 +1,9 @@
 const net = require('net');
 const fs = require('fs');
 const port = 8000;
-const max_command_bytes = 32;
-const max_filename_bytes = 4096;
 const files_dir = "../uploaded_files/";
 const files_url = files_dir.substr(3);
+const delimiter = '\0';
 
 // Create a TCP socket listener
 const s = net.Server(function (socket) {
@@ -20,21 +19,20 @@ const s = net.Server(function (socket) {
     // This socket only processes the data when the socket is closed because
     // 'data' is a TCP frame, not the full message.
     socket.on('end', function(err) {
-        const last_command_byte = Math.min(allData.indexOf("\0"), max_command_bytes - 1);
-        const command = allData.slice(0, last_command_byte);
+        const firstNull = allData.indexOf(delimiter);
+        const command = allData.slice(0, firstNull);
+        const payload = allData.slice(firstNull + 1);
        
         if("Info" == command) {
-            const content = allData.slice(max_command_bytes);
-            console.log(content);
+            console.log(payload);
         }
         else if("SENDING FILE" == command) {
-            const content_pos = max_command_bytes + max_filename_bytes;
-            const last_filename_byte = Math.min(allData.indexOf("\0", max_command_bytes), content_pos - 1);
-            const filename = allData.slice(max_command_bytes, last_filename_byte);
-            const content = allData.slice(content_pos);
+            const secondNull = payload.indexOf(delimiter);
+            const filename = payload.slice(0, secondNull);
+            const fileContent = payload.slice(secondNull + 1);
             const storedFilename = files_dir + filename;
             const storedFileURL = files_url + filename;
-            fs.writeFile(storedFilename, content, 'utf8', function(err) {
+            fs.writeFile(storedFilename, fileContent, 'utf8', function(err) {
                 if(err) {
                     return console.error(err);
                 }
@@ -43,19 +41,15 @@ const s = net.Server(function (socket) {
             socket.write(storedFileURL);
         }
         else if("SLIDE_SHOW_BEGIN_EVENT" == command) {
-            const content = allData.slice(max_command_bytes);
             // Inform REACT
         }
         else if("SLIDE_SHOW_NEXT_SLIDE_EVENT" == command) {
-            const content = allData.slice(max_command_bytes);
             // Inform REACT
         }
         else if("SLIDE_SHOW_NEXT_BUILD_EVENT" == command) {
-            const content = allData.slice(max_command_bytes);
             // Inform REACT
         }
         else if("SLIDE_SHOW_END_EVENT" == command) {
-            const content = allData.slice(max_command_bytes);
             // Inform REACT
         }
         else
