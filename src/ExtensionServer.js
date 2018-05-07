@@ -1,25 +1,37 @@
-
-
-var net = require('net');
+const net = require('net');
+const fs = require('fs');
+const port = 8000;
+const files_dir = "files/";
 
 // Create a TCP socket listener
-var s = net.Server(function (socket) {
-
-    // Add the new client socket connection to the array of
-    // sockets
+const s = net.Server(function (socket) {
 
     // 'data' is an event that means that a message was just sent by the 
     // client application
     socket.on('data', function (msg_sent) {
-        // Loop through all of our sockets and send the data
-       
-            // Write the msg sent by chat client
-            console.log(msg_sent.toString('utf8'));
+        const command = msg_sent.slice(0, 127).toString('utf8');
+        if(command.startsWith("Info")) {
+            const content = msg_sent.slice(128).toString('utf8');
+            console.log(content);
+        }
+        else if(command.startsWith("SENDING FILE")) {
+            const content = msg_sent.slice(128);
+            const filename = files_dir + "test.pdf";
+            fs.writeFile(filename, content, function(err) {
+                if(err) {
+                    return console.error(err);
+                }
+                console.log("The file '" + filename + "' was saved!");
+            });
+        }
+        else
+            console.log("Unexpected command received: " + command);
     });
-   
 
-
+    socket.on('error', function(err) {
+        console.error(err);
+    });
 });
 
-s.listen(8000);
-console.log('Node server at http://localhost:8000');
+s.listen(port);
+console.log('Node server running on http://localhost:' + port);
