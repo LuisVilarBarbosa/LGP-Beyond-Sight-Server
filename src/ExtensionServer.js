@@ -1,7 +1,7 @@
 const net = require('net');
 const fs = require('fs');
 const port = 8000;
-const files_dir = "files/";
+const files_dir = "../uploaded_files/";
 
 // Create a TCP socket listener
 const s = net.Server(function (socket) {
