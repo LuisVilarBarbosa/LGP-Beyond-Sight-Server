@@ -19,7 +19,8 @@ const s = net.Server(function (socket) {
         }
         else if(command.startsWith("SENDING FILE")) {
             const payload_pos = max_command_bytes + max_filename_bytes;
-            const filename = msg_sent.slice(max_command_bytes, payload_pos - 1).toString('utf8');
+            let filename = msg_sent.slice(max_command_bytes, payload_pos - 1).toString('utf8');
+            filename = filename.slice(0, filename.indexOf("\0"));
             const content = msg_sent.slice(payload_pos);
             const storedFilename = files_dir + filename;
             const storedFileURL = files_url + filename;
