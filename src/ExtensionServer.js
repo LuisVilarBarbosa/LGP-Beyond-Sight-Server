@@ -1,7 +1,9 @@
 // Based on https://www.c-sharpcorner.com/article/socket-io-programming-with-example-in-node-js/
-var express = require('express');
-var app = express();
+// and https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#request-body
+const express = require('express');
 const fs = require('fs');
+const sha256 = require('sha256');
+const app = express();
 const port = 8000;
 const files_dir = "../uploaded_files/";
 const files_url = files_dir.substr(3);
@@ -16,8 +18,9 @@ app.put("/upload_file", function(request, response){
         const nullIndex = body.indexOf(delimiter);
         const filename = body.slice(0, nullIndex);
         const fileContent = body.slice(nullIndex + 1);
-        const storedFilename = files_dir + filename;
-        const storedFileURL = files_url + filename;
+        const ourFilename = sha256(fileContent) + filename.substr(filename.lastIndexOf('.'));
+        const storedFilename = files_dir + ourFilename;
+        const storedFileURL = files_url + ourFilename;
         fs.writeFile(storedFilename, fileContent, 'utf8', function(err) {
             if(err) {
                 return console.error(err);
@@ -29,7 +32,6 @@ app.put("/upload_file", function(request, response){
         response.end();
     });
 });
-
 
 app.post("/slide_show_begin_event", function(request, response){
     response.end();
