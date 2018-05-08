@@ -3,10 +3,11 @@
 const express = require('express');
 const fs = require('fs');
 const sha256 = require('sha256');
+const os = require('os');
 const app = express();
 const port = 8000;
 const files_dir = "../uploaded_files/";
-const files_url = files_dir.substr(3);
+const files_url = files_dir.substr(2);
 const delimiter = '\0';
 
 app.put("/upload_file", function(request, response){
@@ -20,7 +21,7 @@ app.put("/upload_file", function(request, response){
         const fileContent = body.slice(nullIndex + 1);
         const ourFilename = sha256(fileContent) + filename.substr(filename.lastIndexOf('.'));
         const storedFilename = files_dir + ourFilename;
-        const storedFileURL = files_url + ourFilename;
+        const storedFileURL = os.hostname() + files_url + ourFilename;
         fs.writeFile(storedFilename, fileContent, 'utf8', function(err) {
             if(err) {
                 return console.error(err);
@@ -50,5 +51,5 @@ app.post("/slide_show_end_event", function(request, response){
 });
 
 app.listen(port, function() {
-    console.log((new Date().toUTCString()) + ': Node server running on http://localhost:' + port);
+    console.log((new Date().toUTCString()) + ': Node server running on http://' + os.hostname + ':' + port);
 });
