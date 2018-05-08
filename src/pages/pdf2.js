@@ -1,12 +1,13 @@
 import React from 'react';
 import PDF from 'react-pdf-js';
-import file from './pdf-sample2.pdf';
+import file from '../pdf-sample2.pdf';
 
 export default class MyPdf extends React.Component {
     state = {};
 
     onDocumentComplete = (pages) => {
         this.setState({ page: 1, pages });
+        console.log(pages);
     };
 
     onPageComplete = (page) => {

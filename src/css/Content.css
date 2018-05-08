@@ -78,10 +78,10 @@
     -o-background-size: cover;
 }
 @media screen and (min-width: 992px) {
-    #about, #download, #contact, #pdf {
+    #about, #download, #contact, #pdf .pdf-viewer {
         height: 100vh;
     }
-    #pdf .container{
+    #pdf .pdf-viewer .container{
         position:absolute;
         top: 50%;
         left:50%;
@@ -90,7 +90,7 @@
         -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
     }
 
-    #pdf button{
+    #pdf .pdf-viewer button{
         position:absolute;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -285,8 +285,25 @@ h1{
     transition: all 0.15s ease-in-out;
 }
 
-#pdf{
+#pdf .pdf-viewer{
     position:relative;
 }
 
+#pdf .arrow-btn{
+    width:50px;
+    height:50px;
+    text-align: center;
+    background-color: #6ccbe1;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+#pdf .pdf-pages {
+    text-align: center;
+    color:white;
+    padding-bottom:40px;
+}
 
