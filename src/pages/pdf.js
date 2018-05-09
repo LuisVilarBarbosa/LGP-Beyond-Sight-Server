@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 var pdfjsLib = require('pdfjs-dist');
 
+/* https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/ */
+
 export default class pdfs extends Component {
-    state={
-        currentPage: 1,
-        isSync: true,
-        file: null,
-        numPages: 1,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentPage: 1,
+            isSync: true,
+            file: null,
+            numPages: 1,
+        };
+
+
+    }
 
     async componentDidMount(){
         function importAll(r) {
@@ -67,11 +74,11 @@ export default class pdfs extends Component {
                 <div id="pdf">
                     <div className="pdf-viewer">
                         <div className="container">
-                            <button className="arrow-btn" alt="Previous Page" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
-                            <object data={this.state.file + '#page=' + this.state.currentPage } type="application/pdf" width="80%" height="600px">
+                            <button aria-label="Previous Page" className="arrow-btn" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
+                            <button aria-label="Next Page" className="arrow-btn next-page" onClick={()=>{this.nextPage()}}><i className="fas fa-arrow-right"></i></button>
+                            <object data={this.state.file + '#page=' + this.state.currentPage} type="application/pdf" width="80%" height="600px">
                                 <a href={this.file}>test.pdf</a>
                             </object>
-                            <button className="arrow-btn" alt="Next Page" onClick={()=>{this.nextPage()}}><i className="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div className="pdf-pages container">
