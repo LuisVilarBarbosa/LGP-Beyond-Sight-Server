@@ -28,15 +28,29 @@ app.put("/upload_file", function(request, response){
         const ourFilename = sha256(fileContent) + filename.substr(filename.lastIndexOf('.'));
         const storedFilename = files_dir + ourFilename;
         const storedFileURL = os.hostname() + files_url + ourFilename;
-        fs.writeFile(storedFilename, fileContent, 'utf8', function(err) {
-            if(err) {
-                return console.error(err);
+        fs.exists(files_dir, function(exists) {
+            if(!exists) {
+                fs.mkdir(files_dir, function(err) {
+                    if(err) {
+                        response.writeHead(500,{'Content-Type':'text/html'});
+                        response.end();
+                        return console.error(err);
+                    }
+                    console.log("The directory '" + files_dir + "' was created!");
+                });
             }
-            console.log("The file '" + storedFilename + "' was saved!");
+            fs.writeFile(storedFilename, fileContent, 'utf8', function(err) {
+                if(err) {
+                    response.writeHead(500,{'Content-Type':'text/html'});
+                    response.end();
+                    return console.error(err);
+                }
+                console.log("The file '" + storedFilename + "' was saved!");
+                response.writeHead(500,{'Content-Type':'text/html'});
+                response.write(storedFileURL);
+                response.end();
+            });
         });
-        response.writeHead(200,{'Content-Type':'text/html'});
-        response.write(storedFileURL);
-        response.end();
     });
 });
 
