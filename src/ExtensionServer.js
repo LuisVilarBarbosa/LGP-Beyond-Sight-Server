@@ -46,7 +46,7 @@ app.put("/upload_file", function(request, response){
                     return console.error(err);
                 }
                 console.log("The file '" + storedFilename + "' was saved!");
-                response.writeHead(500,{'Content-Type':'text/html'});
+                response.writeHead(200,{'Content-Type':'text/html'});
                 response.write(storedFileURL);
                 response.end();
             });
