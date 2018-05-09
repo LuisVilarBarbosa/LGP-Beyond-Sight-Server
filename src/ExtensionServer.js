@@ -10,12 +10,18 @@ const files_dir = "../uploaded_files/";
 const files_url = files_dir.substr(2);
 const delimiter = '\0';
 
-app.put("/upload_file", function(request, response){
+function receiveBody(request, callback) {
     let body = [];
     request.on('data', (chunk) => {
         body.push(chunk);
     }).on('end', () => {
-        body = Buffer.concat(body).toString();
+        const bodyString = Buffer.concat(body).toString();
+        callback(bodyString);
+    });
+}
+
+app.put("/upload_file", function(request, response){
+    receiveBody(request, (body) => {
         const nullIndex = body.indexOf(delimiter);
         const filename = body.slice(0, nullIndex);
         const fileContent = body.slice(nullIndex + 1);
@@ -35,19 +41,33 @@ app.put("/upload_file", function(request, response){
 });
 
 app.post("/slide_show_begin_event", function(request, response){
-    response.end();
+    receiveBody(request, (body) => {
+        response.writeHead(200,{'Content-Type':'text/html'});
+        response.end();
+    });
 });
 
 app.post("/slide_show_next_slide_event", function(request, response){
-    response.end();
+    receiveBody(request, (body) => {
+        console.log(body);
+        response.writeHead(200,{'Content-Type':'text/html'});
+        response.end();
+    });
 });
 
 app.post("/slide_show_next_build_event", function(request, response){
-    response.end();
+    receiveBody(request, (body) => {
+        console.log(body);
+        response.writeHead(200,{'Content-Type':'text/html'});
+        response.end();
+    });
 });
 
 app.post("/slide_show_end_event", function(request, response){
-    response.end();
+    receiveBody(request, (body) => {
+        response.writeHead(200,{'Content-Type':'text/html'});
+        response.end();
+    });
 });
 
 app.listen(port, function() {
