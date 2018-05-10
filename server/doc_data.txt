@@ -1,0 +1,73 @@
+InfoBegin
+InfoKey: Creator
+InfoValue: Microsoft&#174; PowerPoint&#174; 2016
+InfoBegin
+InfoKey: Producer
+InfoValue: Microsoft&#174; PowerPoint&#174; 2016
+InfoBegin
+InfoKey: Author
+InfoValue: Andreia Rodrigues
+InfoBegin
+InfoKey: ModDate
+InfoValue: D:20180312002227+00'00'
+InfoBegin
+InfoKey: CreationDate
+InfoValue: D:20180312002227+00'00'
+PdfID0: d040ec796a196149b59c24bad165229d
+PdfID1: d040ec796a196149b59c24bad165229d
+NumberOfPages: 11
+PageMediaBegin
+PageMediaNumber: 1
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405
+PageMediaBegin
+PageMediaNumber: 2
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405
+PageMediaBegin
+PageMediaNumber: 3
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405
+PageMediaBegin
+PageMediaNumber: 4
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405
+PageMediaBegin
+PageMediaNumber: 5
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405
+PageMediaBegin
+PageMediaNumber: 6
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405
+PageMediaBegin
+PageMediaNumber: 7
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405
+PageMediaBegin
+PageMediaNumber: 8
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405
+PageMediaBegin
+PageMediaNumber: 9
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405
+PageMediaBegin
+PageMediaNumber: 10
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405
+PageMediaBegin
+PageMediaNumber: 11
+PageMediaRotation: 0
+PageMediaRect: 0 0 720 405
+PageMediaDimensions: 720 405

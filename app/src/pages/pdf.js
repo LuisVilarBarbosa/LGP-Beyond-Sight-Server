@@ -12,11 +12,23 @@ export default class pdfs extends Component {
             file: null,
             numPages: 1,
         };
-
-
     }
 
     async componentDidMount(){
+
+        let url = 'http://192.168.8.100:3050/split/' + this.props.match.params.file_name;
+        const request = async () => {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }});
+            const json = await response.json();
+            console.log(json);
+        };
+        request();
+
         function importAll(r) {
              let files = {};
              r.keys().map((item, index) => { files[item.replace('./', '')] = r(item); return true});
