@@ -20,6 +20,13 @@ function receiveBody(request, callback) {
     });
 }
 
+function receiveAndParseBodyAsText(request, callback) {
+    receiveBody(request, (body) => {
+        const bodyParts = body.split(delimiter);
+        callback(bodyParts);
+    });
+}
+
 app.put("/upload_file", function(request, response){
     receiveBody(request, (body) => {
         const nullIndex = body.indexOf(delimiter);
@@ -55,30 +62,32 @@ app.put("/upload_file", function(request, response){
 });
 
 app.post("/slide_show_begin_event", function(request, response){
-    receiveBody(request, (body) => {
+    receiveAndParseBodyAsText(request, (bodyParts) => {
+        console.log(bodyParts);
         response.writeHead(200,{'Content-Type':'text/html'});
         response.end();
     });
 });
 
 app.post("/slide_show_next_slide_event", function(request, response){
-    receiveBody(request, (body) => {
-        console.log(body);
+    receiveAndParseBodyAsText(request, (bodyParts) => {
+        console.log(bodyParts);
         response.writeHead(200,{'Content-Type':'text/html'});
         response.end();
     });
 });
 
 app.post("/slide_show_next_build_event", function(request, response){
-    receiveBody(request, (body) => {
-        console.log(body);
+    receiveAndParseBodyAsText(request, (bodyParts) => {
+        console.log(bodyParts);
         response.writeHead(200,{'Content-Type':'text/html'});
         response.end();
     });
 });
 
 app.post("/slide_show_end_event", function(request, response){
-    receiveBody(request, (body) => {
+    receiveAndParseBodyAsText(request, (bodyParts) => {
+        console.log(bodyParts);
         response.writeHead(200,{'Content-Type':'text/html'});
         response.end();
     });
