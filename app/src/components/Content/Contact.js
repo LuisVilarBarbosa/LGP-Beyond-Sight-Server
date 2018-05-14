@@ -30,7 +30,7 @@ export default class Contact extends Component {
                         <h1 className="text-center">CONTACT</h1>
                         <div className="row">
                             <div className="col-md-5">
-                                <img src={require('../../resources/images/mail.png')} alt="Contact us"/>
+                                <img src={require('../../resources/images/mail.png')} alt="Contact Form"/>
                             </div>
                             <div className="col-md-7">
                                 <div className="form row">
@@ -46,7 +46,7 @@ export default class Contact extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-12 form-group">
-                                        <button className="btn" onClick={this.sendContact}/>
+                                        <button aria-label="Send Email" className="btn" onClick={this.sendContact}/>
                                     </div>
                                 </div>
                             </div>

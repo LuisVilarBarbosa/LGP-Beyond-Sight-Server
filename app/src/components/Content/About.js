@@ -10,7 +10,7 @@ export default class Contact extends Component {
             <Element name="about" id="about">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-faded">
                     <a className="navbar-brand">
-                        <img src={require('../../resources/images/logo_white.png')} alt="Beyond Sight Logo"/>
+                        <img src={require('../../resources/images/logo_white.png')} alt="Logo"/>
                     </a>
                     <button className="navbar-toggler"
                             type="button"

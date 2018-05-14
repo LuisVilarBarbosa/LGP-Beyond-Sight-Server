@@ -16,7 +16,9 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "react-scroll": "^1.7.9",
-    "react-scroll-nav": "^1.1.5"
+    "react-scroll-nav": "^1.1.5",
+    "react-speech": "^0.3.2",
+    "react-voice-components": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

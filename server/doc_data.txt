@@ -1,73 +1,63 @@
 InfoBegin
 InfoKey: Creator
-InfoValue: Microsoft&#174; PowerPoint&#174; 2016
+InfoValue: Pdf995
 InfoBegin
-InfoKey: Producer
-InfoValue: Microsoft&#174; PowerPoint&#174; 2016
+InfoKey: Title
+InfoValue: PDF
 InfoBegin
 InfoKey: Author
-InfoValue: Andreia Rodrigues
+InfoValue: Software 995
 InfoBegin
-InfoKey: ModDate
-InfoValue: D:20180312002227+00'00'
+InfoKey: Producer
+InfoValue: GNU Ghostscript 7.05
+InfoBegin
+InfoKey: Keywords
+InfoValue: pdf, create pdf, software, acrobat, adobe
+InfoBegin
+InfoKey: Subject
+InfoValue: Create PDF with Pdf 995
 InfoBegin
 InfoKey: CreationDate
-InfoValue: D:20180312002227+00'00'
-PdfID0: d040ec796a196149b59c24bad165229d
-PdfID1: d040ec796a196149b59c24bad165229d
-NumberOfPages: 11
+InfoValue: 12/12/2003 17:30:12
+NumberOfPages: 5
+BookmarkBegin
+BookmarkTitle: Introduction to the Pdf995 Suite
+BookmarkLevel: 1
+BookmarkPageNumber: 1
+BookmarkBegin
+BookmarkTitle: Sample Word document with links
+BookmarkLevel: 1
+BookmarkPageNumber: 2
+BookmarkBegin
+BookmarkTitle: Hierarchical bookmark to Stamped Document
+BookmarkLevel: 2
+BookmarkPageNumber: 3
+BookmarkBegin
+BookmarkTitle: Excel Chart and Spreadsheet
+BookmarkLevel: 1
+BookmarkPageNumber: 5
 PageMediaBegin
 PageMediaNumber: 1
 PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
+PageMediaRect: 0 0 612 792
+PageMediaDimensions: 612 792
 PageMediaBegin
 PageMediaNumber: 2
 PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
+PageMediaRect: 0 0 612 792
+PageMediaDimensions: 612 792
 PageMediaBegin
 PageMediaNumber: 3
 PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
+PageMediaRect: 0 0 612 792
+PageMediaDimensions: 612 792
 PageMediaBegin
 PageMediaNumber: 4
 PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
+PageMediaRect: 0 0 612 792
+PageMediaDimensions: 612 792
 PageMediaBegin
 PageMediaNumber: 5
 PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
-PageMediaBegin
-PageMediaNumber: 6
-PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
-PageMediaBegin
-PageMediaNumber: 7
-PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
-PageMediaBegin
-PageMediaNumber: 8
-PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
-PageMediaBegin
-PageMediaNumber: 9
-PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
-PageMediaBegin
-PageMediaNumber: 10
-PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
-PageMediaBegin
-PageMediaNumber: 11
-PageMediaRotation: 0
-PageMediaRect: 0 0 720 405
-PageMediaDimensions: 720 405
+PageMediaRect: 0 0 612 792
+PageMediaDimensions: 612 792

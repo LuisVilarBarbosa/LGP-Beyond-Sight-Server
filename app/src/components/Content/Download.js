@@ -10,9 +10,9 @@ export default class Download extends Component {
                 <div id="downloadSection" className="text-center">
                     <h1>DOWNLOAD</h1>
                     <div className="img-container">
-                        <img src={require('../../resources/images/comp.png')} alt="Download Beyond Sight"/>
+                        <img src={require('../../resources/images/comp.png')} alt="Download Beyond Sight Bellow"/>
                     </div>
-                    <button className="btn">
+                    <button aria-label="Download Here" className="btn">
                     </button>
                 </div>
             </Element>

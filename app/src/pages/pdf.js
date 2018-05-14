@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
-var pdfjsLib = require('pdfjs-dist');
+let pdfjsLib = require('pdfjs-dist');
 
 /* https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/ */
+
+function pad2(number) {
+    number = (number < 10 ? '0' : '') + number;
+    number = number.substring(0,2);
+    return number;
+}
+
+function importAll(r) {
+    let files = {};
+    r.keys().map((item, index) => { files[item.replace('./', '')] = r(item); return true});
+    return files;
+}
+
+const files = importAll(require.context('../pdf/', false, /\.pdf$/));
+
 
 export default class pdfs extends Component {
     constructor(props) {
@@ -14,9 +29,10 @@ export default class pdfs extends Component {
         };
     }
 
+
     async componentDidMount(){
 
-        let url = 'http://192.168.8.100:3050/split/' + this.props.match.params.file_name;
+       /* let url = 'http://localhost:3050/split/' + this.props.match.params.file_name;
         const request = async () => {
             const response = await fetch(url, {
                 method: 'GET',
@@ -27,22 +43,15 @@ export default class pdfs extends Component {
             const json = await response.json();
             console.log(json);
         };
-        request();
+        request();*/
 
-        function importAll(r) {
-             let files = {};
-             r.keys().map((item, index) => { files[item.replace('./', '')] = r(item); return true});
-             return files;
-        }
-
-        const files = importAll(require.context('../', false, /\.pdf$/));
-        this.setState({file:files[this.props.match.params.file_name]});
+        this.setState({file:files[this.props.match.params.file_name + '_' + pad2(this.state.currentPage) + '.pdf']});
 
         let numPages = null;
         let numPagesN = null;
 
-        /* This returns some info about the file */
-        numPages = pdfjsLib.getDocument(files[this.props.match.params.file_name]).then(function (doc) {
+        /* This return page info about the file */
+        numPages = pdfjsLib.getDocument(files[this.props.match.params.file_name + '.pdf']).then(function (doc) {
             numPages = doc.numPages;
             return numPages;
         });
@@ -54,6 +63,7 @@ export default class pdfs extends Component {
     previousPage(){
         if(this.state.currentPage > 1)
         {
+            this.setState({file:files[this.props.match.params.file_name + '_' + pad2(this.state.currentPage - 1) + '.pdf']});
             this.setState({currentPage: this.state.currentPage - 1});
         }
     };
@@ -61,9 +71,11 @@ export default class pdfs extends Component {
     nextPage(){
         if(this.state.currentPage < this.state.numPages)
         {
-            this.setState({currentPage: this.state.currentPage + 1});
-        }
 
+            this.setState({file:files[this.props.match.params.file_name + '_' + pad2(this.state.currentPage + 1) + '.pdf']});
+            this.setState({currentPage: this.state.currentPage + 1});
+
+        }
     };
 
     goToPage(newPage){
@@ -84,25 +96,20 @@ export default class pdfs extends Component {
         else
             return (
                 <div id="pdf">
+
                     <div className="pdf-viewer">
                         <div className="container">
                             <button aria-label="Previous Page" className="arrow-btn" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
                             <button aria-label="Next Page" className="arrow-btn next-page" onClick={()=>{this.nextPage()}}><i className="fas fa-arrow-right"></i></button>
-                            <object data={this.state.file + '#page=' + this.state.currentPage} type="application/pdf" width="80%" height="600px">
-                                <a href={this.file}>test.pdf</a>
+                            <object data={this.state.file + "#toolbar=0&navpanes=0&scrollbar=0"} type="application/pdf" width="80%" height="600px">
+                                <a href={this.state.file}>test.pdf</a>
                             </object>
                         </div>
                     </div>
                     <div className="pdf-pages container">
-                        Page {this.state.currentPage} of {this.state.numPages}
+                        <p>Page {this.state.currentPage} of {this.state.numPages}</p>
                     </div>
                 </div>
-
             );
     }
 }
-/* <button onClick={()=>{this.previousPage()}}>Previous</button>
-                     <button onClick={()=>{this.nextPage()}}>Next</button>
-
-
-                     + "&toolbar=0&navpanes=0&scrollbar=0"*/
