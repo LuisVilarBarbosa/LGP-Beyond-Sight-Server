@@ -1,63 +1,91 @@
 InfoBegin
 InfoKey: Creator
-InfoValue: Pdf995
+InfoValue: Microsoft&#174; PowerPoint&#174; 2016
 InfoBegin
 InfoKey: Title
-InfoValue: PDF
-InfoBegin
-InfoKey: Author
-InfoValue: Software 995
+InfoValue: Beyond Sight
 InfoBegin
 InfoKey: Producer
-InfoValue: GNU Ghostscript 7.05
+InfoValue: Microsoft&#174; PowerPoint&#174; 2016
 InfoBegin
-InfoKey: Keywords
-InfoValue: pdf, create pdf, software, acrobat, adobe
+InfoKey: Author
+InfoValue: Tiago Jos&#233; Grosso Pacheco
 InfoBegin
-InfoKey: Subject
-InfoValue: Create PDF with Pdf 995
+InfoKey: ModDate
+InfoValue: D:20180515140220+01'00'
 InfoBegin
 InfoKey: CreationDate
-InfoValue: 12/12/2003 17:30:12
-NumberOfPages: 5
-BookmarkBegin
-BookmarkTitle: Introduction to the Pdf995 Suite
-BookmarkLevel: 1
-BookmarkPageNumber: 1
-BookmarkBegin
-BookmarkTitle: Sample Word document with links
-BookmarkLevel: 1
-BookmarkPageNumber: 2
-BookmarkBegin
-BookmarkTitle: Hierarchical bookmark to Stamped Document
-BookmarkLevel: 2
-BookmarkPageNumber: 3
-BookmarkBegin
-BookmarkTitle: Excel Chart and Spreadsheet
-BookmarkLevel: 1
-BookmarkPageNumber: 5
+InfoValue: D:20180515140220+01'00'
+PdfID0: dea1141979b72442a8c0996048f52649
+PdfID1: dea1141979b72442a8c0996048f52649
+NumberOfPages: 14
 PageMediaBegin
 PageMediaNumber: 1
 PageMediaRotation: 0
-PageMediaRect: 0 0 612 792
-PageMediaDimensions: 612 792
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
 PageMediaBegin
 PageMediaNumber: 2
 PageMediaRotation: 0
-PageMediaRect: 0 0 612 792
-PageMediaDimensions: 612 792
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
 PageMediaBegin
 PageMediaNumber: 3
 PageMediaRotation: 0
-PageMediaRect: 0 0 612 792
-PageMediaDimensions: 612 792
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
 PageMediaBegin
 PageMediaNumber: 4
 PageMediaRotation: 0
-PageMediaRect: 0 0 612 792
-PageMediaDimensions: 612 792
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
 PageMediaBegin
 PageMediaNumber: 5
 PageMediaRotation: 0
-PageMediaRect: 0 0 612 792
-PageMediaDimensions: 612 792
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 6
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 7
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 8
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 9
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 10
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 11
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 12
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 13
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 14
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
