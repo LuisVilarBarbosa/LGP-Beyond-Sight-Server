@@ -29,7 +29,6 @@ export default class pdfs extends Component {
     }
 
     async componentDidMount(){
-        /*
        /* let url = 'http://localhost:3050/split/' + this.props.match.params.file_name;
         const request = async () => {
             const response = await fetch(url, {
@@ -99,15 +98,36 @@ export default class pdfs extends Component {
         }
     };
 
-    goToPage(newPage){
+    goToPage(newPage)
+    {
         if(newPage >= 1 && newPage <= this.state.numPages)
         {
+            this.setState({file:files[this.props.match.params.file_name + '_' + pad2(newPage) + '.pdf']});
             this.setState({currentPage: newPage});
         }
     };
 
+    pause()
+    {
+        this.setState({isSync: false});
+        window.responsiveVoice.speak("Presentation paused.");
+    };
+
+    play()
+    {
+        this.setState({isSync: true});
+        window.responsiveVoice.speak("Resume presentation.");
+    };
+
     render() {
         let pages = "Page " + this.state.currentPage + " of " + this.state.numPages;
+
+        let syncBtn = <button aria-label="Pause" className="arrow-btn" onClick={()=>{this.pause()}}><i className="fas fa-pause"></i></button>;
+        if(!this.state.isSync)
+        {
+            syncBtn = <button aria-label="Synchronize" className="arrow-btn" onClick={()=>{this.play()}}><i className="fas fa-play"></i></button>;
+        }
+
         if(this.state.file === null)
             return (
                 <div id="pdf">
@@ -118,12 +138,17 @@ export default class pdfs extends Component {
             return (
                 <div id="pdf">
                     <div className="pdf-viewer">
+                        <div className="sync-button">
+                            {syncBtn}
+                        </div>
                         <div className="container">
-                            <button aria-label="Previous Page" className="arrow-btn" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
+                            <button aria-label="Previous Page" className="arrow-btn previous-page" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
                             <button aria-label="Next Page" className="arrow-btn next-page" onClick={()=>{this.nextPage()}}><i className="fas fa-arrow-right"></i></button>
+                            <div className="pdf-container">
                             <object data={this.state.file + "#scrollbar=0"} type="application/pdf" width="80%" height="600px">
                                 <a href={this.state.file}>test.pdf</a>
                             </object>
+                            </div>
                         </div>
                     </div>
                     <div className="pdf-pages container">

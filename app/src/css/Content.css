@@ -38,6 +38,12 @@
     border-radius: 0;
     padding-right: 10%;
     padding-left: 10%;
+    min-height: 50px;
+}
+
+#pdf .navbar{
+    padding-right: 30px;
+    padding-left: 10%;
 }
 
 .navbar .navbar-brand img{
@@ -46,13 +52,12 @@
     padding-right: 15px ;
 }
 
-
-
 .navbar li a{
     color: #fff !important;
     margin-right: 20px;
     margin-left: 20px;
-    padding-bottom:10px;
+    padding-bottom:5px;
+    text-decoration: none;
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
@@ -90,7 +95,7 @@
         -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
     }
 
-    #pdf .pdf-viewer button{
+    #pdf .pdf-viewer  .container button{
         position:absolute;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -304,10 +309,24 @@ h1{
 #pdf .pdf-pages {
     text-align: center;
     color:white;
-    padding-bottom:40px;
+    padding-bottom:20px;
 }
 
-.next-page{
+#pdf .next-page{
     left:89%;
 }
 
+#pdf .previous-page{
+    left:11%;
+}
+
+#pdf .sync-button{
+    padding-top:50px;
+    padding-bottom:10px;
+    padding-right:50px;
+    text-align: right;
+}
+
+#pdf object{
+   border-width: 2px;
+}

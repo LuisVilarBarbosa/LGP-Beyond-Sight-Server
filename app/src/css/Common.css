@@ -13,3 +13,7 @@
     margin:0;
     padding-top:13px;
 }
+#footer a{
+    color:white;
+    text-decoration: none;
+}
