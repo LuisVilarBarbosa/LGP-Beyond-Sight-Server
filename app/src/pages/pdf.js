@@ -28,7 +28,6 @@ export default class pdfs extends Component {
         };
     }
 
-
     async componentDidMount(){
         /*
        /* let url = 'http://localhost:3050/split/' + this.props.match.params.file_name;
@@ -57,23 +56,46 @@ export default class pdfs extends Component {
         numPagesN = await numPages.then(function(value){
             return value});
         this.setState({numPages: numPagesN});
+
+        if(this.state.currentPage === 1)
+        {
+            let pages = "Page 1 of " + this.state.numPages;
+            window.responsiveVoice.speak(pages);
+        }
     }
 
     previousPage(){
         if(this.state.currentPage > 1)
         {
-            this.setState({file:files[this.props.match.params.file_name + '_' + pad2(this.state.currentPage - 1) + '.pdf']});
-            this.setState({currentPage: this.state.currentPage - 1});
+            let newPage = this.state.currentPage - 1;
+            this.setState({file:files[this.props.match.params.file_name + '_' + pad2(newPage) + '.pdf']});
+            this.setState({currentPage: newPage});
+            if(newPage !== 1)
+            {
+                let pages = "Page " + newPage;
+                window.responsiveVoice.speak(pages);
+            }
+            else
+            {
+                let pages = "Page 1 of " + this.state.numPages;
+                window.responsiveVoice.speak(pages);
+            }
         }
     };
 
     nextPage(){
         if(this.state.currentPage < this.state.numPages)
         {
+            let newPage = this.state.currentPage + 1;
+            this.setState({file:files[this.props.match.params.file_name + '_' + pad2(newPage) + '.pdf']});
+            this.setState({currentPage: newPage});
+            let pages = "Page " + newPage;
+            window.responsiveVoice.speak(pages);
 
-            this.setState({file:files[this.props.match.params.file_name + '_' + pad2(this.state.currentPage + 1) + '.pdf']});
-            this.setState({currentPage: this.state.currentPage + 1});
-
+            if(newPage === this.state.numPages)
+            {
+                window.responsiveVoice.speak("Last page.");
+            }
         }
     };
 
@@ -83,7 +105,6 @@ export default class pdfs extends Component {
             this.setState({currentPage: newPage});
         }
     };
-
 
     render() {
         let pages = "Page " + this.state.currentPage + " of " + this.state.numPages;
