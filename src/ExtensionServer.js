@@ -4,11 +4,67 @@ const express = require('express');
 const fs = require('fs');
 const sha256 = require('sha256');
 const os = require('os');
+const ftpd = require('simple-ftpd');
+const path = require('path');
 const app = express();
 const port = 8000;
 const files_dir = "../uploaded_files/";
 const files_url = files_dir.substr(2);
 const delimiter = '\0';
+const ftpPort = 21;
+const uploadMapping = new Map();
+
+fs.exists(files_dir, function(exists) {
+    if(!exists) {
+        fs.mkdir(files_dir, function(err) {
+            if(err) throw err;
+            console.log("The directory '" + files_dir + "' was created!");
+        });
+    }
+});
+
+ftpd({ host: '127.0.0.1', port: ftpPort, root: files_dir }, (session) => {
+ 
+    session.on('pass', (username, password, callback) => {
+      if (username === 'BeyondSightPPTExtension' && password === 'BeyondSightPPTExtensionPassword') {
+        session.readOnly = false;
+        session.root = files_dir;
+        callback(null, 'Welcome Beyond Sight PPT Extension');
+      } 
+      // else {
+      //   callback(null, 'Welcome guest');
+      // }
+    });
+
+    // session.on('stat', (pathName, callback) => {
+    //  fs.stat(pathName, callback);
+    // })
+   
+    // session.on('readdir', (pathName, callback) => {
+    //   fs.readdir(pathName, callback);
+    // })
+   
+    // session.on('read', (pathName, offset, callback) => {
+    //  callback(null, fs.createReadStream(pathName, { start: offset }));
+    // });
+   
+    session.on('write', (pathName, offset, callback) => {
+        let filename = path.basename(pathName);
+        if(uploadMapping.get(filename) === undefined){
+            callback(null, null);
+            return;
+        }
+        fs.exists(pathName, function(exists) {
+            if(exists) {
+                callback(null, null);
+                return;
+            }
+            callback(null, fs.createWriteStream(pathName, { start: offset }));
+        });
+    });
+});
+console.log((new Date().toUTCString()) + ': FTP server running on ftp://' + os.hostname + ':' + ftpPort);
+
 
 function receiveBody(request, callback) {
     let body = [];
@@ -27,37 +83,26 @@ function receiveAndParseBodyAsText(request, callback) {
     });
 }
 
-app.put("/upload_file", function(request, response){
-    receiveBody(request, (body) => {
-        const nullIndex = body.indexOf(delimiter);
-        const filename = body.slice(0, nullIndex);
-        const fileContent = body.slice(nullIndex + 1);
-        const ourFilename = sha256(fileContent) + filename.substr(filename.lastIndexOf('.'));
-        const storedFilename = files_dir + ourFilename;
-        const storedFileURL = os.hostname() + files_url + ourFilename;
-        fs.exists(files_dir, function(exists) {
-            if(!exists) {
-                fs.mkdir(files_dir, function(err) {
-                    if(err) {
-                        response.writeHead(500,{'Content-Type':'text/html'});
-                        response.end();
-                        return console.error(err);
-                    }
-                    console.log("The directory '" + files_dir + "' was created!");
-                });
-            }
-            fs.writeFile(storedFilename, fileContent, 'utf8', function(err) {
-                if(err) {
-                    response.writeHead(500,{'Content-Type':'text/html'});
-                    response.end();
-                    return console.error(err);
-                }
-                console.log("The file '" + storedFilename + "' was saved!");
-                response.writeHead(200,{'Content-Type':'text/html'});
-                response.write(storedFileURL);
-                response.end();
-            });
+app.post("/upload_file", function(request, response){
+    receiveAndParseBodyAsText(request, (bodyParts) => {
+        if(bodyParts.length == 0){
+            response.writeHead(500,{'Content-Type':'text/html'});
+            response.end();
+            return;
+        }
+        const filename = bodyParts[0];
+        const fileExtension = filename.substr(filename.lastIndexOf('.'));
+        const ourFileName = sha256(filename) + fileExtension;   // make it more collision proof
+        const storedFileURL = os.hostname() + files_url + ourFileName;
+        uploadMapping.set(ourFileName, Date.now);
+        const timeout = new Date() - 10000 /* ms */;
+        uploadMapping.forEach((value, key, map) => {
+            if(value < timeout)
+                map.delete(key);
         });
+        response.writeHead(200,{'Content-Type':'text/html'});
+        response.write(storedFileURL);
+        response.end();
     });
 });
 
