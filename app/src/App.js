@@ -7,6 +7,8 @@ import NotFound from "./components/NotFound";
 import {Switch, Route} from 'react-router-dom';
 import './css/Common.css';
 
+import './css/Chat.css';
+
 /*https://stackoverflow.com/questions/33039152/split-pdf-in-separate-file-in-javascript*/
 export default class App extends Component {
 
