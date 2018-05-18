@@ -1,0 +1,91 @@
+InfoBegin
+InfoKey: Creator
+InfoValue: Microsoft&#174; PowerPoint&#174; 2016
+InfoBegin
+InfoKey: Title
+InfoValue: Beyond Sight
+InfoBegin
+InfoKey: Producer
+InfoValue: Microsoft&#174; PowerPoint&#174; 2016
+InfoBegin
+InfoKey: Author
+InfoValue: Tiago Jos&#233; Grosso Pacheco
+InfoBegin
+InfoKey: ModDate
+InfoValue: D:20180515140220+01'00'
+InfoBegin
+InfoKey: CreationDate
+InfoValue: D:20180515140220+01'00'
+PdfID0: dea1141979b72442a8c0996048f52649
+PdfID1: dea1141979b72442a8c0996048f52649
+NumberOfPages: 14
+PageMediaBegin
+PageMediaNumber: 1
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 2
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 3
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 4
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 5
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 6
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 7
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 8
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 9
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 10
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 11
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 12
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 13
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540
+PageMediaBegin
+PageMediaNumber: 14
+PageMediaRotation: 0
+PageMediaRect: 0 0 960 540
+PageMediaDimensions: 960 540

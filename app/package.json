@@ -1,0 +1,32 @@
+{
+  "name": "lgpbeyondsight",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.5",
+    "@fortawesome/react-fontawesome": "0.0.18",
+    "concurrently": "^3.5.1",
+    "nanoid": "^1.0.2",
+    "express": "^4.16.3",
+    "pdfjs-dist": "^2.0.489",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-fontawesome": "^1.6.1",
+    "react-pdf": "^3.0.5",
+    "react-pdf-js": "^3.0.7",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "react-scroll": "^1.7.9",
+    "react-scroll-nav": "^1.1.5",
+    "simple-ftpd": "0.0.4"
+  },
+  "scripts": {
+    "server": "cd src && node ExtensionServer.js",
+    "client": "react-scripts start",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
