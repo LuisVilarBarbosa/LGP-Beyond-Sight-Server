@@ -16,7 +16,7 @@ function importAll(r) {
     return files;
 }
 
-const files = importAll(require.context('../pdf/', false, /\.pdf$/));
+const files = importAll(require.context('../../uploaded_files/', false, /\.pdf$/));
 
 export default class pdfs extends Component {
     constructor(props) {
