@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Chatroom from '../components/Chat/Chatroom';
 let pdfjsLib = require('pdfjs-dist');
 
 /* https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/ */
@@ -142,12 +143,21 @@ export default class pdfs extends Component {
                             {syncBtn}
                         </div>
                         <div className="container">
-                            <button aria-label="Previous Page" className="arrow-btn previous-page" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
-                            <button aria-label="Next Page" className="arrow-btn next-page" onClick={()=>{this.nextPage()}}><i className="fas fa-arrow-right"></i></button>
-                            <div className="pdf-container">
-                            <object data={this.state.file + "#scrollbar=0"} type="application/pdf" width="80%" height="600px">
-                                <a href={this.state.file}>test.pdf</a>
-                            </object>
+                            <div className="row">
+                                <div className="col-sm-8">
+                                    <button aria-label="Previous Page" className="arrow-btn previous-page" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
+                                    <button aria-label="Next Page" className="arrow-btn next-page" onClick={()=>{this.nextPage()}}><i className="fas fa-arrow-right"></i></button>
+                                    <div className="pdf-container">
+                                    <object data={this.state.file + "#scrollbar=0"} type="application/pdf" width="80%" height="600px">
+                                        <a href={this.state.file}>test.pdf</a>
+                                    </object>
+                                    </div>
+                                </div>
+                                <div className="col-sm-4">
+                                    <div className="chat">
+                                        <Chatroom />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
