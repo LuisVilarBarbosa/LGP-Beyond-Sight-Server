@@ -29,30 +29,24 @@ export default class Chatroom extends Component {
         const socket = io(socketUrl)
 
         socket.on('connect', ()=>{
-            console.log("Connected");
+            console.log("Connected to chat_server");
         })
 
         socket.on("SendAll", (allMessages) =>{
-            console.log(allMessages)
             Object.entries(allMessages).map(([key, value])=>{
-                //console.log("KEY" , key);
                 this.setState({
                     chats: []
                 })
                 value.map(el => {
-                    console.log(el)
-                    console.log(el.username);
-                    console.log(el.content.props.children);
                     this.setState({
                         chats: this.state.chats.concat([{
                             username: el.username,
                             content: <p>{el.content.props.children}</p>,
                         }])
                     })
-                    // this.setState({
-                    //     chats: el
-                    // })
+                    return 1;
                 })
+                return 1;
             })
         })
 
@@ -81,31 +75,31 @@ export default class Chatroom extends Component {
     submitMessage(e) {
         e.preventDefault();
         
-        this.setState({
-            chats: this.state.chats.concat([{
-                username: this.state.username,
-                content: <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>,
-            }])
-        }, () => {
-            ReactDOM.findDOMNode(this.refs.msg).value = "";
-
-            this.state.socket.emit("SendMessage",this.state.chats)
-            console.log(this.state.chats)
-        });
-
-        
+        if(ReactDOM.findDOMNode(this.refs.msg).value){
+            this.setState({
+                chats: this.state.chats.concat([{
+                    username: this.state.username,
+                    content: <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>,
+                }])
+            }, () => {
+                ReactDOM.findDOMNode(this.refs.msg).value = "";
+    
+                this.state.socket.emit("SendMessage",this.state.chats)
+            });
+        }
 
     }
 
     submitUsername(e) {
         e.preventDefault();
         
-        this.setState({
-            username: ReactDOM.findDOMNode(this.refs.user).value
-        }, () => {
-            ReactDOM.findDOMNode(this.refs.msg).value = "";
-            console.log("USERNAME", this.state.username)
-        });
+        if(ReactDOM.findDOMNode(this.refs.user).value){
+            this.setState({
+                username: ReactDOM.findDOMNode(this.refs.user).value
+            }, () => {
+                ReactDOM.findDOMNode(this.refs.msg).value = "";
+            });
+        }
         
     }
 
