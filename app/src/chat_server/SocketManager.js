@@ -6,13 +6,6 @@ let allMessages = {};
 module.exports = function(socket){
     console.log("Socket id" + socket.id);
 
-    // socket.on(USER_CONNECTED, (user) =>{
-    //     connectedUsers = addUser(connectedUsers, user)
-    //     socket.user = user;
-    //     io.emit(USER_CONNECTED, connectedUsers)
-    //     console.log(connectedUsers);
-    // })
-
     socket.on("SendMessage", (chat) =>{
         allMessages = addMessage(addMessage, chat)
         console.log(allMessages);
@@ -20,13 +13,6 @@ module.exports = function(socket){
     })
 
     socket.emit("SendAll",allMessages);
-}
-
-
-function addUser(userList, user){
-    let newList = Object.assign({}, userList)
-    newList[user.name] = user
-    return newList
 }
 
 function addMessage(messageList, message){
