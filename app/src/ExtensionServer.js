@@ -55,12 +55,27 @@ ftpd({ host: '127.0.0.1', port: ftpPort, root: files_dir }, (session) => {
             return;
         }
         uploadMapping.delete(filename);
-        fs.exists(pathName, function(exists) {
+        fs.exists(pathName, async function(exists) {
             if(exists) {
                 callback(null, null);
                 return;
             }
-            callback(null, fs.createWriteStream(pathName, { start: offset }));
+            await callback(null, fs.createWriteStream(pathName, { start: offset }));
+
+            try {
+                const filenameWithoutExtension = filename.substr(0, filename.lastIndexOf('.'));
+                var exec = require('child_process').exec, child;
+                child = exec('pdftk ' + files_dir + filename + ' burst output ' + files_dir + filenameWithoutExtension + '_%02d.pdf', function (error, stdout, stderr) {
+                    console.log('pdftk stdout: ' + stdout);
+                    console.log('pdftk stderr: ' + stderr);
+                    if (error != null) {
+                          console.log('exec error: ' + error);
+                    }
+                    fs.unlink(pathName);
+                });
+              } catch (err) {
+                  console.log(err);
+            }
         });
     });
 });

@@ -1,6 +1,9 @@
 # Uploaded files
 uploaded_files/
 
+# pdftk generated files
+doc_data.txt
+
 # Logs
 logs
 *.log
