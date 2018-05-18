@@ -54,6 +54,7 @@ ftpd({ host: '127.0.0.1', port: ftpPort, root: files_dir }, (session) => {
             callback(null, null);
             return;
         }
+        uploadMapping.delete(filename);
         fs.exists(pathName, function(exists) {
             if(exists) {
                 callback(null, null);
@@ -94,8 +95,8 @@ app.post("/upload_file", function(request, response){
         const fileExtension = filename.substr(filename.lastIndexOf('.'));
         const ourFileName = nanoid() + fileExtension;
         const storedFileURL = os.hostname() + files_url + ourFileName;
-        uploadMapping.set(ourFileName, Date.now);
-        const timeout = new Date() - 10000 /* ms */;
+        uploadMapping.set(ourFileName, Date.now());
+        const timeout = Date.now() - 10000 /* ms */;
         uploadMapping.forEach((value, key, map) => {
             if(value < timeout)
                 map.delete(key);
