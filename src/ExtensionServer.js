@@ -2,7 +2,7 @@
 // and https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#request-body
 const express = require('express');
 const fs = require('fs');
-const sha256 = require('sha256');
+const nanoid = require('nanoid')
 const os = require('os');
 const ftpd = require('simple-ftpd');
 const path = require('path');
@@ -92,7 +92,7 @@ app.post("/upload_file", function(request, response){
         }
         const filename = bodyParts[0];
         const fileExtension = filename.substr(filename.lastIndexOf('.'));
-        const ourFileName = sha256(filename) + fileExtension;   // make it more collision proof
+        const ourFileName = nanoid() + fileExtension;
         const storedFileURL = os.hostname() + files_url + ourFileName;
         uploadMapping.set(ourFileName, Date.now);
         const timeout = new Date() - 10000 /* ms */;
