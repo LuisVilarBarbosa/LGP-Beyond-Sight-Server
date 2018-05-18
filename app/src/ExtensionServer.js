@@ -71,7 +71,6 @@ ftpd({ host: '127.0.0.1', port: ftpPort, root: files_dir }, (session) => {
                     if (error != null) {
                           console.log('exec error: ' + error);
                     }
-                    fs.unlink(pathName);
                 });
               } catch (err) {
                   console.log(err);
