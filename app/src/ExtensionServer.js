@@ -9,7 +9,7 @@ const path = require('path');
 const app = express();
 const port = 8000;
 const files_dir = "../uploaded_files/";
-const files_url = files_dir.substr(2);
+const files_url = "/pages/pdf/";
 const delimiter = '\0';
 const ftpPort = 21;
 const uploadMapping = new Map();
@@ -107,8 +107,9 @@ app.post("/upload_file", function(request, response){
         }
         const filename = bodyParts[0];
         const fileExtension = filename.substr(filename.lastIndexOf('.'));
-        const ourFileName = nanoid() + fileExtension;
-        const storedFileURL = os.hostname() + files_url + ourFileName;
+        const id = nanoid();
+        const ourFileName = id + fileExtension;
+        const storedFileURL = os.hostname() + files_url + id;
         uploadMapping.set(ourFileName, Date.now());
         const timeout = Date.now() - 10000 /* ms */;
         uploadMapping.forEach((value, key, map) => {
