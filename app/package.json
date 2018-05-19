@@ -10,6 +10,8 @@
     "nanoid": "^1.0.2",
     "nodemon": "^1.17.4",
     "pdfjs-dist": "^2.0.489",
+    "pusher": "^2.0.0",
+    "pusher-js": "^4.2.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-fontawesome": "^1.6.1",
@@ -21,7 +23,8 @@
     "react-scroll": "^1.7.9",
     "react-scroll-nav": "^1.1.5",
     "simple-ftpd": "0.0.4",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1"
   },
   "scripts": {
     "server": "cd src && nodemon -L ExtensionServer.js",

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Chatroom from '../components/Chat/Chatroom';
+import Pusher from 'pusher-js';
 let pdfjsLib = require('pdfjs-dist');
 
 /* https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/ */
@@ -62,6 +63,17 @@ export default class pdfs extends Component {
             let pages = "Page 1 of " + this.state.numPages;
             window.responsiveVoice.speak(pages);
         }
+       var pusher = new Pusher('649f74e3a883bf7aa954', {
+            cluster: 'eu',
+            encrypted: true
+            });
+
+       //Modify the function of the bind to handle the data and do the event processing
+        var channel = pusher.subscribe('react-node');
+            channel.bind('message', function(data) {
+            console.log(data.message);
+        });
+
     }
 
     previousPage(){

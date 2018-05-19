@@ -14,6 +14,17 @@ const delimiter = '\0';
 const ftpPort = 21;
 const uploadMapping = new Map();
 
+const Pusher = require('pusher');
+
+
+const pusher = new Pusher({
+    appId: '528423',
+    key: '649f74e3a883bf7aa954',
+    secret: '6560157c267df67fac68',
+    cluster: 'eu',
+    encrypted: true
+    });
+
 fs.exists(files_dir, function(exists) {
     if(!exists) {
         fs.mkdir(files_dir, function(err) {
@@ -125,6 +136,9 @@ app.post("/upload_file", function(request, response){
 app.post("/slide_show_begin_event", function(request, response){
     receiveAndParseBodyAsText(request, (bodyParts) => {
         console.log(bodyParts);
+        pusher.trigger('react-node', 'message', {
+        "message": "hello world"
+        });
         response.writeHead(200,{'Content-Type':'text/html'});
         response.end();
     });
