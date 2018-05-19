@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
+
 var Scroll = require('react-scroll');
 var Element = Scroll.Element;
+// var express = require('express');
+// var app = express();
 
-/*https://www.npmjs.com/package/express-mailer*/
+// var mail = require('../../Mailer');
+// app.set('view engine', 'ejs');
+// module.exports = app;
 
 export default class Contact extends Component {
 
@@ -35,7 +40,7 @@ export default class Contact extends Component {
                             <div className="col-md-7">
                                 <div className="form row">
                                     <div className="col-sm-6 form-group">
-                                        <input className="form-control" id="name" name="name" placeholder="Name" type="text" value={this.state.name}  onChange={this.handleName} required/>
+                                        <input className="form-control" id="name" name="name" placeholder="Name" type="text" value={this.state.name} onChange={this.handleName} required/>
                                     </div>
                                     <div className="col-sm-6 form-group">
                                         <input className="form-control" id="email" name="email" placeholder="Email" type="email" value={this.state.email} onChange={this.handleEmail} required/>
@@ -61,17 +66,21 @@ export default class Contact extends Component {
         console.log('My name is:' + this.state.name + '\n' +
             'My email is:' + this.state.email + '\n' +
             'My comment is:' + this.state.comments);
+
+        // mail.sendContactForm('lgpbeyondsight@gmail.com', this.state.name, this.state.email, this.state.comments);
     }
 
-    handleName(event){
+    handleName(event) {
         this.setState({name: event.target.value});
         console.log(event.target.value);
     }
-    handleEmail(event){
+
+    handleEmail(event) {
         this.setState({email: event.target.value});
         console.log(event.target.value);
     }
-    handleComment(event){
+
+    handleComment(event) {
         this.setState({comments: event.target.value});
         console.log(event.target.value);
     }
