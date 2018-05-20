@@ -16,7 +16,7 @@ exports.sendContactForm = function (email, infoName, infoEmail, infoComment) {
     //transporter.template
     sendEmail({
         to: email,
-        subject: 'Password Reset - YourDomain.com'
+        subject: 'New contact form message'
     }, {
         infoName: infoName,
         infoEmail: infoEmail,

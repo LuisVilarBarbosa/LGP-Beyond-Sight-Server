@@ -2,11 +2,16 @@ import React, {Component} from 'react';
 
 var Scroll = require('react-scroll');
 var Element = Scroll.Element;
+
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
 // var express = require('express');
 // var app = express();
 
-// var mail = require('../../Mailer');
 // app.set('view engine', 'ejs');
+// var mail = require('../../Mailer');
 // module.exports = app;
 
 export default class Contact extends Component {
