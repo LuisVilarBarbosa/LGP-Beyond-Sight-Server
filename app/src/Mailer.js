@@ -14,6 +14,10 @@ var sendEmail = transporter.templateSender(
 
 exports.sendContactForm = function (email, infoName, infoEmail, infoComment) {
 
+  console.log(email)
+  console.log(infoName)
+  console.log(infoEmail)
+  console.log(infoComment)
   //transporter.template
   sendEmail({
     to: email,
