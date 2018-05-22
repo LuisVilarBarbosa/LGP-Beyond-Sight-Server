@@ -13,20 +13,21 @@ var sendEmail = transporter.templateSender(
     });
 
 exports.sendContactForm = function (email, infoName, infoEmail, infoComment) {
-    //transporter.template
-    sendEmail({
-        to: email,
-        subject: 'New contact form message'
-    }, {
-        infoName: infoName,
-        infoEmail: infoEmail,
-        infoComment: infoComment
-    }, function (err, info) {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log('Link sent\n' + JSON.stringify(info));
-        }
-    });
+
+  //transporter.template
+  sendEmail({
+    to: email,
+    subject: 'New contact form message'
+  }, {
+    infoName: infoName,
+    infoEmail: infoEmail,
+    infoComment: infoComment
+  }, function (err, info) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('Link sent\n' + JSON.stringify(info));
+    }
+  });
 };
 
