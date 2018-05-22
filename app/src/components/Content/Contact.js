@@ -60,37 +60,37 @@ export default class Contact extends Component {
     console.log('My name is:' + this.state.name + '\n' +
         'My email is:' + this.state.email + '\n' +
         'My comment is:' + this.state.comments);
-
-    var options = {
+    let options = {
       method: 'POST',
-      uri: 'http://localhost:4000/email',
+      uri: 'http://localhost:8000/email',
       body: {
         name: this.state.name,
         email: this.state.email,
-        messsage: this.state.comments
+        message: this.state.comments
       },
       json: true // Automatically stringifies the body to JSON
     };
 
     rp(options).then(function(parsedBody) {
-      alert("Message Sent.");
+      alert("Message sent.");
     }).catch(function(err) {
       alert("Message failed to send.")
     });
   }
+
   handleName(event) {
     this.setState({name: event.target.value});
-    console.log(event.target.value);
+    //console.log(event.target.value);
   }
 
   handleEmail(event) {
     this.setState({email: event.target.value});
-    console.log(event.target.value);
+    //console.log(event.target.value);
   }
 
   handleComment(event) {
     this.setState({comments: event.target.value});
-    console.log(event.target.value);
+    //console.log(event.target.value);
   }
 
 }

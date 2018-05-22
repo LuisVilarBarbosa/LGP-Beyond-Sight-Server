@@ -13,7 +13,17 @@ const files_url = "/pages/pdf/";
 const delimiter = '\0';
 const ftpPort = 21;
 const uploadMapping = new Map();
+var mailer  = require('./Mailer');
+var bodyParser = require('body-parser');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(cors);
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 fs.exists(files_dir, function(exists) {
   if(!exists) {
     fs.mkdir(files_dir, function(err) {
@@ -152,6 +162,11 @@ app.post("/slide_show_end_event", function(request, response){
     response.writeHead(200,{'Content-Type':'text/html'});
     response.end();
   });
+});
+
+app.post("/email", function(req, res){
+  mailer.sendContactForm('lgpbeyondsight@gmail.com', req.body.name, req.body.email, req.body.message);
+  res.end();
 });
 
 app.listen(port, function() {

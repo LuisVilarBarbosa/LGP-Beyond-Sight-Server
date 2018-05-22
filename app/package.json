@@ -38,7 +38,7 @@
     "server": "cd src && nodemon -L ExtensionServer.js",
     "chat-server": "cd src/chat_server && nodemon -L index.js",
     "client": "react-scripts start",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run chat-server\" \"npm run client\" \"npm run email_server ",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run chat-server\" \"npm run client\" ",
     "email_server": "cd src && nodemon mailServer.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
