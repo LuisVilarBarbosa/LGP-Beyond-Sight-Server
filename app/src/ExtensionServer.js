@@ -16,7 +16,6 @@ const uploadMapping = new Map();
 
 const Pusher = require('pusher');
 
-
 const pusher = new Pusher({
     appId: '528423',
     key: '649f74e3a883bf7aa954',
@@ -91,7 +90,6 @@ ftpd({ host: '127.0.0.1', port: ftpPort, root: files_dir }, (session) => {
 });
 console.log((new Date().toUTCString()) + ': FTP server running on ftp://' + os.hostname + ':' + ftpPort);
 
-
 function receiveBody(request, callback) {
     let body = [];
     request.on('data', (chunk) => {
@@ -137,7 +135,7 @@ app.post("/slide_show_begin_event", function(request, response){
     receiveAndParseBodyAsText(request, (bodyParts) => {
         console.log(bodyParts);
         pusher.trigger('react-node', 'message', {
-        "message": "hello world"
+        "message": bodyParts
         });
         response.writeHead(200,{'Content-Type':'text/html'});
         response.end();
@@ -147,6 +145,9 @@ app.post("/slide_show_begin_event", function(request, response){
 app.post("/slide_show_next_slide_event", function(request, response){
     receiveAndParseBodyAsText(request, (bodyParts) => {
         console.log(bodyParts);
+        pusher.trigger('react-node', 'message', {
+            "message": bodyParts
+        });
         response.writeHead(200,{'Content-Type':'text/html'});
         response.end();
     });
@@ -155,6 +156,9 @@ app.post("/slide_show_next_slide_event", function(request, response){
 app.post("/slide_show_next_build_event", function(request, response){
     receiveAndParseBodyAsText(request, (bodyParts) => {
         console.log(bodyParts);
+        pusher.trigger('react-node', 'message', {
+            "message": bodyParts
+        });
         response.writeHead(200,{'Content-Type':'text/html'});
         response.end();
     });
@@ -163,6 +167,9 @@ app.post("/slide_show_next_build_event", function(request, response){
 app.post("/slide_show_end_event", function(request, response){
     receiveAndParseBodyAsText(request, (bodyParts) => {
         console.log(bodyParts);
+        pusher.trigger('react-node', 'message', {
+            "message": bodyParts
+        });
         response.writeHead(200,{'Content-Type':'text/html'});
         response.end();
     });
