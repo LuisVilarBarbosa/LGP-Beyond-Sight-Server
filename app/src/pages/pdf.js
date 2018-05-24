@@ -181,27 +181,22 @@ export default class pdfs extends Component {
         else
             return (
                 <div id="pdf">
+                    <div>
+                        <Chatroom />
+                    </div>
                     <div className="pdf-viewer">
                         <div className="sync-button">
                             {syncBtn}
                         </div>
                         <div className="container">
-                            <div className="row">
-                                <div className="col-sm-8">
-                                    <button aria-label="Previous Page" className="arrow-btn previous-page" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
-                                    <button aria-label="Next Page" className="arrow-btn next-page" onClick={()=>{this.nextPage()}}><i className="fas fa-arrow-right"></i></button>
-                                    <div className="pdf-container">
-                                    <object data={this.state.file + "#scrollbar=0"} type="application/pdf" width="80%" height="600px">
-                                        <a href={this.state.file}>test.pdf</a>
-                                    </object>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4">
-                                    <div className="chat">
-                                        <Chatroom />
-                                    </div>
-                                </div>
+                            <button aria-label="Previous Page" className="arrow-btn previous-page" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
+                            <button aria-label="Next Page" className="arrow-btn next-page" onClick={()=>{this.nextPage()}}><i className="fas fa-arrow-right"></i></button>
+                            <div className="pdf-container">
+                                <object data={this.state.file + "#scrollbar=0"} type="application/pdf" width="90%" height="660px">
+                                    <a href={this.state.file}>test.pdf</a>
+                                </object>
                             </div>
+
                         </div>
                     </div>
                     <div className="pdf-pages container">
