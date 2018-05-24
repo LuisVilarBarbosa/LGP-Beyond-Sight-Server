@@ -60,8 +60,6 @@ export default class pdfs extends Component {
         let channel = pusher.subscribe('react-node');
             channel.bind('message', data => {
 
-
-
                 if(data.message[0] === this.props.match.params.file_name)
                 {
                     switch(data.message[1]) {
@@ -71,6 +69,7 @@ export default class pdfs extends Component {
                             window.responsiveVoice.speak("Presentation Started");
                             break;
                         case "SlideShowNextSlideEventHandler":
+                        case "SlideShowNextBuildEventHandler":
                             let page = parseInt(data.message[2]);
                             this.setState({syncExtensionPage: page});
                             if(!this.state.isSync)
