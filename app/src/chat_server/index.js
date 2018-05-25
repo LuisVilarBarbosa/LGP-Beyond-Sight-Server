@@ -1,12 +1,11 @@
-var app = require('http').createServer()
-var io = module.exports.io = require('socket.io')(app)
+var app = require('http').createServer();
+var io = module.exports.io = require('socket.io')(app);
+const SocketManager = require('./SocketManager');
+const os = require('os');
+const PORT = process.env.NODE_CHAT_SERVER_PORT || 3231;
 
-const PORT = process.env.PORT || 3231
-
-const SocketManager = require('./SocketManager')
-
-io.on('connection', SocketManager)
+io.on('connection', SocketManager);
 
 app.listen(PORT, () => {
-    console.log("Connected to Port: " + PORT);
-})
+    console.log((new Date().toUTCString()) + ': Chat server running on http://' + os.hostname + ':' + PORT);
+});

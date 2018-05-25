@@ -8,7 +8,7 @@ module.exports = function(socket){
 
     socket.on("SendMessage", (chat) =>{
         allMessages = addMessage(addMessage, chat)
-        console.log(allMessages);
+        console.log(allMessages)
         io.emit("SendAll",allMessages);
     })
 

@@ -3,20 +3,29 @@ import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 import Message from './Message';
 
-const socketUrl = "http://localhost:3231";
+const URLC = process.env.NODE_CHAT_SERVER_DOMAIN_NAME || 'localhost'
+const PORT = process.env.NODE_CHAT_SERVER_PORT || 3231
+
+const socketUrl = "http://"+URLC+":"+PORT
+
 
 export default class Chatroom extends Component {
     socket = {};
 
     constructor(props) {
         super(props);
-
+        
         this.state = {
             chats: [],
             username: "Null",
             socket: null,
+
             showChatBox: false,
+
+            chatID: this.props.chatID
         };
+
+        console.log(this.state);
         
         this.submitMessage = this.submitMessage.bind(this);
 
@@ -27,8 +36,7 @@ export default class Chatroom extends Component {
     }
 
     initSocket = () =>{
-        const socket = io(socketUrl);
-
+        const socket = io(socketUrl)
         socket.on('connect', ()=>{
             console.log("Connected to chat_server");
         });
@@ -41,6 +49,7 @@ export default class Chatroom extends Component {
                 value.map(el => {
                     this.setState({
                         chats: this.state.chats.concat([{
+                            chatID: el.chatID,
                             username: el.username,
                             content: <p>{el.content.props.children}</p>,
                         }])
@@ -79,6 +88,7 @@ export default class Chatroom extends Component {
         if(ReactDOM.findDOMNode(this.refs.msg).value){
             this.setState({
                 chats: this.state.chats.concat([{
+                    chatID: this.state.chatID,
                     username: this.state.username,
                     content: <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>,
                 }])
@@ -88,7 +98,7 @@ export default class Chatroom extends Component {
                 this.state.socket.emit("SendMessage",this.state.chats)
             });
         }
-
+        console.log(this.state.chats)
     }
 
     submitUsername(e) {
@@ -129,6 +139,7 @@ export default class Chatroom extends Component {
         else{
             return (
                 <div className="chatroom">
+
                     <div className="chatroom-head" onClick={(e) => this.setState({showChatBox: !this.state.showChatBox})}>
                         {this.state.showChatBox && <h3>Close</h3> || <h3>Chat With Us</h3>}
                     </div>
@@ -137,7 +148,7 @@ export default class Chatroom extends Component {
                             <ul className="chats" ref="chats">
                                 {
                                     chats.map((chat, i) =>
-                                        <Message key={i} chat={chat} user={this.state.username}/>
+                                        <Message key={i} chat={chat} user={this.state.username} chatID={this.state.chatID}/>
                                     )
                                 }
                             </ul>

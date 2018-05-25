@@ -141,7 +141,6 @@ export default class pdfs extends Component {
         {
             this.setState({file:files[this.props.match.params.file_name + '_' + pad2(newPage) + '.pdf']});
             this.setState({currentPage: newPage});
-            let pages = "Page " + newPage;
 
             if(newPage === 1)
             {
@@ -197,8 +196,8 @@ export default class pdfs extends Component {
         else
             return (
                 <div id="pdf">
-                    <div>
-                        <Chatroom />
+                    <div className="chat">
+                        <Chatroom chatID={this.props.match.params.file_name}/>
                     </div>
                     <div className="pdf-viewer">
                         <div className="sync-button">
@@ -212,7 +211,6 @@ export default class pdfs extends Component {
                                     <a href={this.state.file}>test.pdf</a>
                                 </object>
                             </div>
-
                         </div>
                     </div>
                     <div className="pdf-pages container">
