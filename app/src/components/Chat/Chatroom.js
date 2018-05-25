@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 import Message from './Message';
 
-const URLC = process.env.URLC || 'localhost'
-const PORT = process.env.PORT || 3231
+const URLC = process.env.NODE_CHAT_SERVER_DOMAIN_NAME || 'localhost'
+const PORT = process.env.NODE_CHAT_SERVER_PORT || 3231
 
 const socketUrl = "http://"+URLC+":"+PORT
 
@@ -22,9 +22,7 @@ export default class Chatroom extends Component {
         };
         
         this.submitMessage = this.submitMessage.bind(this);
-        console.log(socketUrl);
-        console.log(process.env.URLC)
-        console.log(process.env)
+
     }
 
     componentWillMount(){
@@ -44,16 +42,13 @@ export default class Chatroom extends Component {
                     chats: []
                 })
                 value.map(el => {
-                    console.log(el)
-                    //if(this.state.chatID === el.chatID){
-                        this.setState({
-                            chats: this.state.chats.concat([{
-                                chatID: el.chatID,
-                                username: el.username,
-                                content: <p>{el.content.props.children}</p>,
-                            }])
-                        })
-                    //}
+                    this.setState({
+                        chats: this.state.chats.concat([{
+                            chatID: el.chatID,
+                            username: el.username,
+                            content: <p>{el.content.props.children}</p>,
+                        }])
+                    })
                     return 1;
                 })
                 return 1;
