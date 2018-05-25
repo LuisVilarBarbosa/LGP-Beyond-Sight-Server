@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Chatroom from '../components/Chat/Chatroom';
 import Pusher from 'pusher-js';
+import { Link } from 'react-router-dom'
 let pdfjsLib = require('pdfjs-dist');
 
 /* https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/ */
@@ -28,64 +29,74 @@ export default class pdfs extends Component {
             isSync: true,
             file: null,
             numPages: 1,
+            invalidPDF: false,
         };
     }
 
     async componentDidMount(){
-        this.setState({file:files[this.props.match.params.file_name + '_' + pad2(this.state.currentPage) + '.pdf']});
 
-        let numPages = null;
-        let numPagesN = null;
-
-        /* This return page info about the file */
-        numPages = pdfjsLib.getDocument(files[this.props.match.params.file_name + '.pdf']).then(function (doc) {
-            numPages = doc.numPages;
-            return numPages;
-        });
-        numPagesN = await numPages.then(function(value){
-            return value});
-        this.setState({numPages: numPagesN});
-
-        if(this.state.currentPage === 1)
+        if(!files[this.props.match.params.file_name + ".pdf"])
         {
-            let pages = "Page 1 of " + this.state.numPages;
-            window.responsiveVoice.speak(pages);
+            this.setState({invalidPDF: true});
         }
+        else
+        {
+            this.setState({invalidPDF: false});
+            this.setState({file:files[this.props.match.params.file_name + '_' + pad2(this.state.currentPage) + '.pdf']});
 
-       let pusher = new Pusher('649f74e3a883bf7aa954', {
-            cluster: 'eu',
-            encrypted: true
+            let numPages = null;
+            let numPagesN = null;
+
+            /* This return page info about the file */
+            numPages = pdfjsLib.getDocument(files[this.props.match.params.file_name + '.pdf']).then(function (doc) {
+                numPages = doc.numPages;
+                return numPages;
             });
+            numPagesN = await numPages.then(function(value){
+                return value});
+            this.setState({numPages: numPagesN});
 
-        let channel = pusher.subscribe('react-node');
-            channel.bind('message', data => {
+            if(this.state.currentPage === 1)
+            {
+                let pages = "Page 1 of " + this.state.numPages;
+                window.responsiveVoice.speak(pages);
+            }
 
-                if(data.message[0] === this.props.match.params.file_name)
-                {
-                    switch(data.message[1]) {
-                        case "SlideShowBeginEventHandler":
-                            if(!this.state.isSync)
-                                return;
-                            window.responsiveVoice.speak("Presentation Started");
-                            break;
-                        case "SlideShowNextSlideEventHandler":
-                        case "SlideShowNextBuildEventHandler":
-                            let page = parseInt(data.message[2]);
-                            this.setState({syncExtensionPage: page});
-                            if(!this.state.isSync)
-                                return;
-                            this.goToPage(page);
-                            break;
-                        case "SlideShowEndEventHandler":
-                            if(!this.state.isSync)
-                                return;
-                            window.responsiveVoice.speak("Presentation Finished");
-                            break;
-                        default:
-                            break;
+           let pusher = new Pusher('649f74e3a883bf7aa954', {
+                cluster: 'eu',
+                encrypted: true
+                });
+
+            let channel = pusher.subscribe('react-node');
+                channel.bind('message', data => {
+
+                    if(data.message[0] === this.props.match.params.file_name)
+                    {
+                        switch(data.message[1]) {
+                            case "SlideShowBeginEventHandler":
+                                if(!this.state.isSync)
+                                    return;
+                                window.responsiveVoice.speak("Presentation Started");
+                                break;
+                            case "SlideShowNextSlideEventHandler":
+                            case "SlideShowNextBuildEventHandler":
+                                let page = parseInt(data.message[2]);
+                                this.setState({syncExtensionPage: page});
+                                if(!this.state.isSync)
+                                    return;
+                                this.goToPage(page);
+                                break;
+                            case "SlideShowEndEventHandler":
+                                if(!this.state.isSync)
+                                    return;
+                                window.responsiveVoice.speak("Presentation Finished");
+                                break;
+                            default:
+                                break;
+                        }
                     }
-                }
-        });
+            });
+        }
 
     }
 
@@ -171,10 +182,15 @@ export default class pdfs extends Component {
             syncBtn = <button aria-label="Synchronize" className="arrow-btn" onClick={()=>{this.play()}}><i className="fas fa-play"></i></button>;
         }
 
-        if(this.state.file === null)
+        if(this.state.invalidPDF)
             return (
                 <div id="pdf">
-                    <h3>Failed loading file</h3>
+                    <div className="pdf-viewer">
+                        <div className="error">
+                           <h3>Invalid File Name</h3>
+                            <p><Link to="/">Go Back To Homepage</Link></p>
+                        </div>
+                    </div>
                 </div>
             );
         else
