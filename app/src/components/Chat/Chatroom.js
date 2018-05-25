@@ -3,22 +3,28 @@ import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 import Message from './Message';
 
-const socketUrl = "http://localhost:3231"
+const URLC = process.env.URLC || 'localhost'
+const PORT = process.env.PORT || 3231
+
+const socketUrl = "http://"+URLC+":"+PORT
 
 export default class Chatroom extends Component {
     socket = {};
 
     constructor(props) {
         super(props);
-
+        
         this.state = {
             chats: [],
             username: "Null",
             socket: null,
+            chatID: this.props.chatID
         };
         
         this.submitMessage = this.submitMessage.bind(this);
-
+        console.log(socketUrl);
+        console.log(process.env.URLC)
+        console.log(process.env)
     }
 
     componentWillMount(){
@@ -27,7 +33,7 @@ export default class Chatroom extends Component {
 
     initSocket = () =>{
         const socket = io(socketUrl)
-
+        
         socket.on('connect', ()=>{
             console.log("Connected to chat_server");
         })
@@ -38,12 +44,16 @@ export default class Chatroom extends Component {
                     chats: []
                 })
                 value.map(el => {
-                    this.setState({
-                        chats: this.state.chats.concat([{
-                            username: el.username,
-                            content: <p>{el.content.props.children}</p>,
-                        }])
-                    })
+                    console.log(el)
+                    //if(this.state.chatID === el.chatID){
+                        this.setState({
+                            chats: this.state.chats.concat([{
+                                chatID: el.chatID,
+                                username: el.username,
+                                content: <p>{el.content.props.children}</p>,
+                            }])
+                        })
+                    //}
                     return 1;
                 })
                 return 1;
@@ -78,6 +88,7 @@ export default class Chatroom extends Component {
         if(ReactDOM.findDOMNode(this.refs.msg).value){
             this.setState({
                 chats: this.state.chats.concat([{
+                    chatID: this.state.chatID,
                     username: this.state.username,
                     content: <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>,
                 }])
@@ -127,7 +138,7 @@ export default class Chatroom extends Component {
                     <ul className="chats" ref="chats">
                         {
                             chats.map((chat, i) => 
-                                <Message key={i} chat={chat} user={this.state.username} />
+                                <Message key={i} chat={chat} user={this.state.username} chatID={this.state.chatID}/>
                             )
                         }
                     </ul>

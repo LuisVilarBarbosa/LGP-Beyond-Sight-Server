@@ -155,7 +155,7 @@ export default class pdfs extends Component {
                                 </div>
                                 <div className="col-sm-4">
                                     <div className="chat">
-                                        <Chatroom />
+                                        <Chatroom chatID={this.props.match.params.file_name}/>
                                     </div>
                                 </div>
                             </div>
