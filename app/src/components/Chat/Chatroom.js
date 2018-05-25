@@ -148,7 +148,7 @@ export default class Chatroom extends Component {
                             <ul className="chats" ref="chats">
                                 {
                                     chats.map((chat, i) =>
-                                        <Message key={i} chat={chat} user={this.state.username}/>
+                                        <Message key={i} chat={chat} user={this.state.username} chatID={this.state.chatID}/>
                                     )
                                 }
                             </ul>
