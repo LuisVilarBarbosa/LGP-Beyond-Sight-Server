@@ -24,6 +24,8 @@ export default class Chatroom extends Component {
 
             chatID: this.props.chatID
         };
+
+        console.log(this.state);
         
         this.submitMessage = this.submitMessage.bind(this);
 
@@ -96,7 +98,7 @@ export default class Chatroom extends Component {
                 this.state.socket.emit("SendMessage",this.state.chats)
             });
         }
-
+        console.log(this.state.chats)
     }
 
     submitUsername(e) {

@@ -142,12 +142,10 @@ app.post("/upload_file", function(request, response){
   });
 });
 
-
-
-
 app.post("/email", function(req, res){
   mailer.sendContactForm('lgpbeyondsight@gmail.com', req.body.name, req.body.email, req.body.message);
   res.end();
+});
 
 app.post("/slide_show_begin_event", function(request, response){
     receiveAndParseBodyAsText(request, (bodyParts) => {
@@ -196,5 +194,3 @@ app.post("/slide_show_end_event", function(request, response){
 app.listen(port, function() {
   console.log((new Date().toUTCString()) + ': Node server running on http://' + os.hostname + ':' + port);
 });
-
-module.exports = app;
