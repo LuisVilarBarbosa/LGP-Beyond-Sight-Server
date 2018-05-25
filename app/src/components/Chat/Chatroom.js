@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 import Message from './Message';
 
-const socketUrl = "http://localhost:3231"
+const socketUrl = "http://localhost:3231";
 
 export default class Chatroom extends Component {
     socket = {};
@@ -15,6 +15,7 @@ export default class Chatroom extends Component {
             chats: [],
             username: "Null",
             socket: null,
+            showChatBox: false,
         };
         
         this.submitMessage = this.submitMessage.bind(this);
@@ -26,42 +27,41 @@ export default class Chatroom extends Component {
     }
 
     initSocket = () =>{
-        const socket = io(socketUrl)
+        const socket = io(socketUrl);
 
         socket.on('connect', ()=>{
             console.log("Connected to chat_server");
-        })
+        });
 
         socket.on("SendAll", (allMessages) =>{
             Object.entries(allMessages).map(([key, value])=>{
                 this.setState({
                     chats: []
-                })
+                });
                 value.map(el => {
                     this.setState({
                         chats: this.state.chats.concat([{
                             username: el.username,
                             content: <p>{el.content.props.children}</p>,
                         }])
-                    })
+                    });
                     return 1;
-                })
+                });
                 return 1;
             })
-        })
-
+        });
         this.setState({socket})
 
         
-    }
+    };
 
     componentDidMount() {
         if(this.state.username !== "Null"){
             this.scrollToBot();
         }
-            
+
     }
-    
+
     componentDidUpdate() {
         if(this.state.username !== "Null"){
             this.scrollToBot();
@@ -69,7 +69,8 @@ export default class Chatroom extends Component {
     }
 
     scrollToBot() {
-        ReactDOM.findDOMNode(this.refs.chats).scrollTop = ReactDOM.findDOMNode(this.refs.chats).scrollHeight;
+        if(this.state.showChatBox)
+            ReactDOM.findDOMNode(this.refs.chats).scrollTop = ReactDOM.findDOMNode(this.refs.chats).scrollHeight;
     }
 
     submitMessage(e) {
@@ -109,12 +110,18 @@ export default class Chatroom extends Component {
         if(this.state.username === "Null"){
             return(
                 <div className="chatroom">
-                    <h3>ChatTime</h3>
-                    <h5>Please enter username:</h5>
-                    <form className="input" onSubmit={(e) => this.submitUsername(e)}>
-                        <input type="text" ref="user" placeholder="Please enter username"/>
-                        <input type="submit" value="Submit" />
-                    </form>
+                    <div className="chatroom-head" onClick={(e) => this.setState({showChatBox: !this.state.showChatBox})}>
+                         <h3>Chat With Us</h3>
+                    </div>
+                    {this.state.showChatBox &&
+                    <div className="chatroom-body">
+                        <h5>Please enter username:</h5>
+                        < form className="input" onSubmit={(e) => this.submitUsername(e)}>
+                            <input type="text" ref="user" placeholder="Please enter username"/>
+                            <input type="submit" value="Submit" />
+                            </form>
+                    </div>
+                    }
 
                 </div>
             );
@@ -122,19 +129,24 @@ export default class Chatroom extends Component {
         else{
             return (
                 <div className="chatroom">
-                    <h3>ChatTime</h3>
-    
-                    <ul className="chats" ref="chats">
-                        {
-                            chats.map((chat, i) => 
-                                <Message key={i} chat={chat} user={this.state.username} />
-                            )
-                        }
-                    </ul>
-                    <form className="input" onSubmit={(e) => this.submitMessage(e)}>
-                        <input type="text" ref="msg"  placeholder="Please enter text"/>
-                        <input type="submit" value="Submit" />
-                    </form>
+                    <div className="chatroom-head" onClick={(e) => this.setState({showChatBox: !this.state.showChatBox})}>
+                        {this.state.showChatBox && <h3>Close</h3> || <h3>Chat With Us</h3>}
+                    </div>
+                    {this.state.showChatBox &&
+                        <div className="chatroom-body">
+                            <ul className="chats" ref="chats">
+                                {
+                                    chats.map((chat, i) =>
+                                        <Message key={i} chat={chat} user={this.state.username}/>
+                                    )
+                                }
+                            </ul>
+                            <form className="input" onSubmit={(e) => this.submitMessage(e)}>
+                                <input type="text" ref="msg" placeholder="Please enter text"/>
+                                <input type="submit" value="Submit"/>
+                            </form>
+                        </div>
+                    }
                 </div>
             );
         }

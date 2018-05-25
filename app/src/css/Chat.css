@@ -1,31 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Pacifico');
+.chatroom p{
+  margin-bottom:0;
 
+  padding: 0px 15px;
+}
 .chatroom {
-  width: 360px;
-  height: 600px;
-  background-color: rgba(0,0,0, .7);
-  border-radius: 5px;
+  width: 350px;
+  background-color: rgba(16, 44, 55, 0.7);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   overflow: hidden;
   box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
+  position:fixed;
+  right:20px;
+  bottom:0;
+  z-index: 1000;
+
 }
 
 .chatroom h3 {
-  font-family: 'Pacifico', cursive;
-  background-color: rgba(30, 228, 148, 0.7);
+  background-color: #61bdc5;
   color: #FFF;
   margin: 0;
-  height: 40px;
-  font-size: 20px;
+  height: 35px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
 }
 
 .chatroom h5 {
   color: #FFF;
   margin-top: 10px;
-  height: 40px;
-  font-size: 20px;
+  height: 20px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,29 +42,28 @@
 
 .chatroom .chats {
   box-sizing: border-box;
-  padding: 0 20px;
-  margin: 10px 0 0;
+  padding: 0 10px;
+  margin: 0;
   height: 510px;
   overflow-y: scroll;
 }
 
 .chatroom .chats .chat {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.93);
   position: relative;
-  padding: 0px 0.5px;
-  font-size: 14px;
+  font-size: 13px;
   border-radius: 10px;
   list-style: none;
   float: left;
   clear: both;
   margin: 10px 0;
-  max-width: 200px;
+  max-width: 175px;
 }
 
 .chatroom .chats .chat .user {
-  background: rgba(30, 228, 148, 0.7);
+  background: #6ccbe1;
   border-radius: 10px 10px 0px 0px;
-  padding: 0px 0.5px;
+  padding: 0px 10px;
   top: -15px;
   left: 17px;
 }
@@ -82,16 +90,16 @@
 .chatroom .input {
   height: 40px;
   width: 100%;
-  background: rgba(30, 228, 148, 0.7);
+  background: #61bdc5;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
 .chatroom .input input[type="text"] {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.75);
   outline: 0;
-  border: 2px solid #1EE494;
+  border: 2px solid #6ccbe1;
   padding: 0 5px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -104,10 +112,12 @@
 
 .chatroom .input input[type="submit"] {
   background: transparent;
-  border: 1px solid #1EE494;
+  border: 0;
   height: 30px;
   width: 70px;
   font-size: 14px;
+  font-weight: bold;
+  color:white;
   box-sizing: border-box;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -116,6 +126,21 @@
 }
 
 .chatroom .input input[type="submit"]:hover {
-  background: #1EE494;
+  background: #6ccbe1;
   color: #FFF;
+}
+
+.msg_head{
+right:290px;
+}
+
+.chatroom .chats .chat.left, .chatroom .chats .left .user{
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+
+.chatroom .chats .chat.right, .chatroom .chats .right .user{
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }

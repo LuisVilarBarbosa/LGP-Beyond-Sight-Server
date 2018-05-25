@@ -18,12 +18,23 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(cors);
+
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+const Pusher = require('pusher');
+
+const pusher = new Pusher({
+    appId: '528423',
+    key: '649f74e3a883bf7aa954',
+    secret: '6560157c267df67fac68',
+    cluster: 'eu',
+    encrypted: true
+    });
+
 fs.exists(files_dir, function(exists) {
   if(!exists) {
     fs.mkdir(files_dir, function(err) {
@@ -90,7 +101,6 @@ ftpd({ host: '127.0.0.1', port: ftpPort, root: files_dir }, (session) => {
 });
 console.log((new Date().toUTCString()) + ': FTP server running on ftp://' + os.hostname + ':' + ftpPort);
 
-
 function receiveBody(request, callback) {
   let body = [];
   request.on('data', (chunk) => {
@@ -132,41 +142,55 @@ app.post("/upload_file", function(request, response){
   });
 });
 
-app.post("/slide_show_begin_event", function(request, response){
-  receiveAndParseBodyAsText(request, (bodyParts) => {
-    console.log(bodyParts);
-    response.writeHead(200,{'Content-Type':'text/html'});
-    response.end();
-  });
-});
 
-app.post("/slide_show_next_slide_event", function(request, response){
-  receiveAndParseBodyAsText(request, (bodyParts) => {
-    console.log(bodyParts);
-    response.writeHead(200,{'Content-Type':'text/html'});
-    response.end();
-  });
-});
 
-app.post("/slide_show_next_build_event", function(request, response){
-  receiveAndParseBodyAsText(request, (bodyParts) => {
-    console.log(bodyParts);
-    response.writeHead(200,{'Content-Type':'text/html'});
-    response.end();
-  });
-});
-
-app.post("/slide_show_end_event", function(request, response){
-  receiveAndParseBodyAsText(request, (bodyParts) => {
-    console.log(bodyParts);
-    response.writeHead(200,{'Content-Type':'text/html'});
-    response.end();
-  });
-});
 
 app.post("/email", function(req, res){
   mailer.sendContactForm('lgpbeyondsight@gmail.com', req.body.name, req.body.email, req.body.message);
   res.end();
+
+app.post("/slide_show_begin_event", function(request, response){
+    receiveAndParseBodyAsText(request, (bodyParts) => {
+        console.log(bodyParts);
+        pusher.trigger('react-node', 'message', {
+        "message": bodyParts
+        });
+        response.writeHead(200,{'Content-Type':'text/html'});
+        response.end();
+    });
+});
+
+app.post("/slide_show_next_slide_event", function(request, response){
+    receiveAndParseBodyAsText(request, (bodyParts) => {
+        console.log(bodyParts);
+        pusher.trigger('react-node', 'message', {
+            "message": bodyParts
+        });
+        response.writeHead(200,{'Content-Type':'text/html'});
+        response.end();
+    });
+});
+
+app.post("/slide_show_next_build_event", function(request, response){
+    receiveAndParseBodyAsText(request, (bodyParts) => {
+        console.log(bodyParts);
+        pusher.trigger('react-node', 'message', {
+            "message": bodyParts
+        });
+        response.writeHead(200,{'Content-Type':'text/html'});
+        response.end();
+    });
+});
+
+app.post("/slide_show_end_event", function(request, response){
+    receiveAndParseBodyAsText(request, (bodyParts) => {
+        console.log(bodyParts);
+        pusher.trigger('react-node', 'message', {
+            "message": bodyParts
+        });
+        response.writeHead(200,{'Content-Type':'text/html'});
+        response.end();
+    });
 });
 
 app.listen(port, function() {

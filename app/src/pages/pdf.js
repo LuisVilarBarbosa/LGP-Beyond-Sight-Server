@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Chatroom from '../components/Chat/Chatroom';
+import Pusher from 'pusher-js';
 let pdfjsLib = require('pdfjs-dist');
 
 /* https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/ */
@@ -22,6 +23,7 @@ export default class pdfs extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            syncExtensionPage: 1,
             currentPage: 1,
             isSync: true,
             file: null,
@@ -30,19 +32,6 @@ export default class pdfs extends Component {
     }
 
     async componentDidMount(){
-       /* let url = 'http://localhost:3050/split/' + this.props.match.params.file_name;
-        const request = async () => {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }});
-            const json = await response.json();
-            console.log(json);
-        };
-        request();*/
-
         this.setState({file:files[this.props.match.params.file_name + '_' + pad2(this.state.currentPage) + '.pdf']});
 
         let numPages = null;
@@ -62,6 +51,42 @@ export default class pdfs extends Component {
             let pages = "Page 1 of " + this.state.numPages;
             window.responsiveVoice.speak(pages);
         }
+
+       let pusher = new Pusher('649f74e3a883bf7aa954', {
+            cluster: 'eu',
+            encrypted: true
+            });
+
+        let channel = pusher.subscribe('react-node');
+            channel.bind('message', data => {
+
+                if(data.message[0] === this.props.match.params.file_name)
+                {
+                    switch(data.message[1]) {
+                        case "SlideShowBeginEventHandler":
+                            if(!this.state.isSync)
+                                return;
+                            window.responsiveVoice.speak("Presentation Started");
+                            break;
+                        case "SlideShowNextSlideEventHandler":
+                        case "SlideShowNextBuildEventHandler":
+                            let page = parseInt(data.message[2]);
+                            this.setState({syncExtensionPage: page});
+                            if(!this.state.isSync)
+                                return;
+                            this.goToPage(page);
+                            break;
+                        case "SlideShowEndEventHandler":
+                            if(!this.state.isSync)
+                                return;
+                            window.responsiveVoice.speak("Presentation Finished");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+        });
+
     }
 
     previousPage(){
@@ -105,6 +130,23 @@ export default class pdfs extends Component {
         {
             this.setState({file:files[this.props.match.params.file_name + '_' + pad2(newPage) + '.pdf']});
             this.setState({currentPage: newPage});
+            let pages = "Page " + newPage;
+
+            if(newPage === 1)
+            {
+                let pages = "Page 1 of " + this.state.numPages;
+                window.responsiveVoice.speak(pages);
+            }
+            else
+            {
+                let pages = "Page " + newPage;
+                window.responsiveVoice.speak(pages);
+            }
+
+            if(newPage === this.state.numPages)
+            {
+                window.responsiveVoice.speak("Last page.");
+            }
         }
     };
 
@@ -118,6 +160,7 @@ export default class pdfs extends Component {
     {
         this.setState({isSync: true});
         window.responsiveVoice.speak("Resume presentation.");
+        this.goToPage(this.state.syncExtensionPage);
     };
 
     render() {
@@ -138,27 +181,22 @@ export default class pdfs extends Component {
         else
             return (
                 <div id="pdf">
+                    <div>
+                        <Chatroom />
+                    </div>
                     <div className="pdf-viewer">
                         <div className="sync-button">
                             {syncBtn}
                         </div>
                         <div className="container">
-                            <div className="row">
-                                <div className="col-sm-8">
-                                    <button aria-label="Previous Page" className="arrow-btn previous-page" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
-                                    <button aria-label="Next Page" className="arrow-btn next-page" onClick={()=>{this.nextPage()}}><i className="fas fa-arrow-right"></i></button>
-                                    <div className="pdf-container">
-                                    <object data={this.state.file + "#scrollbar=0"} type="application/pdf" width="80%" height="600px">
-                                        <a href={this.state.file}>test.pdf</a>
-                                    </object>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4">
-                                    <div className="chat">
-                                        <Chatroom />
-                                    </div>
-                                </div>
+                            <button aria-label="Previous Page" className="arrow-btn previous-page" onClick={()=>{this.previousPage()}}><i className="fas fa-arrow-left"></i></button>
+                            <button aria-label="Next Page" className="arrow-btn next-page" onClick={()=>{this.nextPage()}}><i className="fas fa-arrow-right"></i></button>
+                            <div className="pdf-container">
+                                <object data={this.state.file + "#scrollbar=0"} type="application/pdf" width="90%" height="660px">
+                                    <a href={this.state.file}>test.pdf</a>
+                                </object>
                             </div>
+
                         </div>
                     </div>
                     <div className="pdf-pages container">
