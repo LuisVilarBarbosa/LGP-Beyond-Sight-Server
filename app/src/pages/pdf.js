@@ -196,7 +196,6 @@ export default class pdfs extends Component {
                                     <a href={this.state.file}>test.pdf</a>
                                 </object>
                             </div>
-
                         </div>
                     </div>
                     <div className="pdf-pages container">
