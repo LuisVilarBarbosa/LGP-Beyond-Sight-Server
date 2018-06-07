@@ -5,7 +5,6 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.5",
     "@fortawesome/react-fontawesome": "0.0.18",
-    "body-parser": "^1.18.3",
     "concurrently": "^3.5.1",
     "consolidate": "^0.15.1",
     "cookie-parser": "^1.4.3",
